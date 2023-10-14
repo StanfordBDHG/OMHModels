@@ -6,8 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Foundation
-
 
 /// Allowed time units are drawn from the HL7 UCUM Common Synonyms code set (https://download.hl7.de/documents/ucum/ucumdata.html)
 public enum TimeUnit: String, UnitProtocol {

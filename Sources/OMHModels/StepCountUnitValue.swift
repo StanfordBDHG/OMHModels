@@ -8,10 +8,10 @@
 import Foundation
 
 
-/// A type representing a value paired with a unit specific to step count measurements
-public typealias StepCountUnitValue = TypedUnitValue<StepCountUnit>
-
 /// Units for a step count measurement
 public enum StepCountUnit: String, UnitProtocol {
     case steps
 }
+
+/// A type representing a value paired with a unit specific to step count measurements
+public typealias StepCountUnitValue = TypedUnitValue<StepCountUnit>

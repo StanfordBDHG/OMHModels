@@ -8,11 +8,11 @@
 import Foundation
 
 
-/// A type representing a value paired with a unit specific to blood glucose measurements.
-public typealias BloodGlucoseUnitValue = TypedUnitValue<BloodGlucoseUnit>
-
 /// Units for a blood glucose measurement
 public enum BloodGlucoseUnit: String, UnitProtocol {
     case milligramsPerDeciliter = "mg/dL"
     case millimolesPerLiter = "mmol/L"
 }
+
+/// A type representing a value paired with a unit specific to blood glucose measurements.
+public typealias BloodGlucoseUnitValue = TypedUnitValue<BloodGlucoseUnit>

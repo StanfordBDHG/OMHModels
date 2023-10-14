@@ -5,8 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
-
 
 /// Total amount of time spent asleep
 /// Generated from IEEE 1752.1 `total-sleep-time-1.0` (https://w3id.org/ieee/ieee-1752-schema/total-sleep-time.json)

@@ -8,9 +8,7 @@
 import Foundation
 
 
-/// A type representing a value paired with a unit for HealthKit quantity samples
-public typealias HealthKitUnitValue = TypedUnitValue<HealthKitUnit>
-
+/// A generic unit for HealthKit quantity samples
 public struct HealthKitUnit: UnitProtocol {
     let unit: String
     
@@ -18,3 +16,6 @@ public struct HealthKitUnit: UnitProtocol {
         self.unit = unit
     }
 }
+
+/// A type representing a value paired with a unit for HealthKit quantity samples
+public typealias HealthKitUnitValue = TypedUnitValue<HealthKitUnit>

@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+
 /// This schema represents a range of numerical values with a unit of measure.
 /// Generated from IEEE 1752.1 `unit-value-range-1.0` (https://w3id.org/ieee/ieee-1752-schema/unit-value-range.json)
 public struct TypedUnitValueRange<T: UnitProtocol>: Codable, Sendable {

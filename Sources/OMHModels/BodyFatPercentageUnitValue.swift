@@ -5,12 +5,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
 
-
-/// A type representing a value paired with a unit specific to body fat percentage
-public typealias BodyFatPercentageUnitValue = TypedUnitValue<BodyFatPercentageUnit>
-
+/// Units for a body fat percentage measurement
 public enum BodyFatPercentageUnit: String, UnitProtocol {
     case percent = "%"
 }
+
+/// A type representing a value paired with a unit specific to body fat percentage
+public typealias BodyFatPercentageUnitValue = TypedUnitValue<BodyFatPercentageUnit>

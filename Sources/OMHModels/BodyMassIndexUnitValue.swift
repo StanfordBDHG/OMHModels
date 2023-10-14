@@ -8,9 +8,10 @@
 import Foundation
 
 
-/// A type representing a value paired with a unit specific to the body mass index calculation
-public typealias BodyMassIndexUnitValue = TypedUnitValue<BodyMassIndexUnit>
-
+/// Units for a body mass index (BMI) measurement
 public enum BodyMassIndexUnit: String, UnitProtocol {
     case kilogramsPerMeterSquared = "kg/m^2"
 }
+
+/// A type representing a value paired with a unit specific to the body mass index calculation
+public typealias BodyMassIndexUnitValue = TypedUnitValue<BodyMassIndexUnit>

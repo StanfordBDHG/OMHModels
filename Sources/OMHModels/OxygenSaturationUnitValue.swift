@@ -7,10 +7,10 @@
 
 import Foundation
 
-
-/// A type representing a value paired with a unit specific to oxygen saturation measurements
-public typealias OxygenSaturationUnitValue = TypedUnitValue<OxygenSaturationUnit>
-
+/// Units for an oxygen saturation measurement
 public enum OxygenSaturationUnit: String, UnitProtocol {
     case percent = "%"
 }
+
+/// A type representing a value paired with a unit specific to oxygen saturation measurements
+public typealias OxygenSaturationUnitValue = TypedUnitValue<OxygenSaturationUnit>
