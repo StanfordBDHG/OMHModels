@@ -27,6 +27,6 @@ public enum DescriptiveStatistic: String, Schema {
     case thirdQuintile = "3rd quintile"
     case fourthQuintile = "4th quintile"
     
-    /// The Open mHealth schema identifier
+    /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "descriptive-statistic", version: "1.0")
 }
