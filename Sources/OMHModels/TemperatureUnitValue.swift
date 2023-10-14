@@ -1,5 +1,5 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -7,10 +7,6 @@
 
 import Foundation
 
-
-/// A type representing a value paired with a unit specific to temperature measurements
-/// Generated from IEEE 1752.1 `temperature-unit-value` (https://w3id.org/ieee/ieee-1752-schema/temperature-unit-value.json)
-public typealias TemperatureUnitValue = TypedUnitValue<TemperatureUnit>
 
 /// Allowed values are drawn from the Temperature Units Common Synonyms (non-UCUM). The valid UCUM code is different for Celsius (C) and Fahrenheit ([degF]). (http://download.hl7.de/documents/ucum/ucumdata.html)
 public enum TemperatureUnit: String, UnitProtocol {
@@ -20,3 +16,7 @@ public enum TemperatureUnit: String, UnitProtocol {
     case F
     case C
 }
+
+/// A type representing a value paired with a unit specific to temperature measurements
+/// Generated from IEEE 1752.1 `temperature-unit-value` (https://w3id.org/ieee/ieee-1752-schema/temperature-unit-value.json)
+public typealias TemperatureUnitValue = TypedUnitValue<TemperatureUnit>

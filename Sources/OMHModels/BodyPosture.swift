@@ -1,5 +1,5 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -9,7 +9,7 @@ import Foundation
 
 
 /// Set of allowable values describing the posture of the body (e.g., during a measurement).
-/// Generated from IEEE 1752.1 `body-posture:1.0` (https://w3id.org/ieee/ieee-1752-schema/body-posture.json)
+/// Generated from IEEE 1752.1 `body-posture-1.0` (https://w3id.org/ieee/ieee-1752-schema/body-posture.json)
 public enum BodyPosture: String, Schema {
     case sitting
     case lyingDown = "lying down"

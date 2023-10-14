@@ -1,5 +1,5 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -8,9 +8,7 @@
 import Foundation
 
 
-/// A type representing a value paired with a unit for HealthKit quantity samples
-public typealias HealthKitUnitValue = TypedUnitValue<HealthKitUnit>
-
+/// A generic unit for HealthKit quantity samples
 public struct HealthKitUnit: UnitProtocol {
     let unit: String
     
@@ -18,3 +16,6 @@ public struct HealthKitUnit: UnitProtocol {
         self.unit = unit
     }
 }
+
+/// A type representing a value paired with a unit for HealthKit quantity samples
+public typealias HealthKitUnitValue = TypedUnitValue<HealthKitUnit>

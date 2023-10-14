@@ -1,14 +1,14 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
 
-
-public enum TimeWindow: Codable, Equatable {
+/// Time window in which the event occurs or should occur: e.g., in twice a day every other day --> 2 times in 1 day every 2 days, time window is 1 day
+/// Defined within the IEEE 1752 `frequency-unit-value-1.0` schema (https://w3id.org/ieee/ieee-1752-schema/frequency-unit-value.json)
+public enum TimeWindow: Codable, Equatable, Sendable {
     case duration(DurationUnitValue)
     case durationRange(DurationUnitValueRange)
     

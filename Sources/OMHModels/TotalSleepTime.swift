@@ -1,17 +1,15 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
-
 
 /// Total amount of time spent asleep
-/// Generated from IEEE 1752.1 `omh:total-sleep-time:1.0` (https://w3id.org/ieee/ieee-1752-schema/total-sleep-time.json)
+/// Generated from IEEE 1752.1 `total-sleep-time-1.0` (https://w3id.org/ieee/ieee-1752-schema/total-sleep-time.json)
 public struct TotalSleepTime: Schema {
-    /// The Open mHealth schema identifier
+    /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "total-sleep-time", version: "1.0")
     
     /// The total amount of time spent asleep

@@ -1,5 +1,5 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -17,9 +17,11 @@ public struct TimeFrame: Schema, Equatable {
         case timeInterval = "time_interval"
     }
 
-    /// The Open mHealth schema identifier
+    /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "time-frame", version: "1.0")
+    
     public let dateTime: DateTime?
+    
     public let timeInterval: TimeInterval?
 
 

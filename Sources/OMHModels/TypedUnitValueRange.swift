@@ -1,9 +1,10 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
+
 
 /// This schema represents a range of numerical values with a unit of measure.
 /// Generated from IEEE 1752.1 `unit-value-range-1.0` (https://w3id.org/ieee/ieee-1752-schema/unit-value-range.json)
@@ -12,8 +13,13 @@ public struct TypedUnitValueRange<T: UnitProtocol>: Codable, Sendable {
         case unit, lowValue, highValue
     }
     
+    /// The unit of measure of the element. Allowed values are drawn from the Common synonyms (non-UCUM) column of [subset of] UCUM, SI and English units.
     public var unit: T
+    
+    /// The lower boundary of the range.
     public var lowValue: Double
+    
+    /// The upper boundary of the range.
     public var highValue: Double
     
     

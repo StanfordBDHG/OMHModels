@@ -1,12 +1,10 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
-// SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
+// SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
-
-import Foundation
 
 
 /// Allowed time units are drawn from the HL7 UCUM Common Synonyms code set (https://download.hl7.de/documents/ucum/ucumdata.html)
