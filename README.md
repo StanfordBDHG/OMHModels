@@ -41,6 +41,7 @@ The following schemas are currently supported by this package:
 - [frequency-unit-value](https://w3id.org/ieee/ieee-1752-schema/frequency-unit-value.json)
 - [schema-id](https://w3id.org/ieee/ieee-1752-schema/schema-id.json)
 - [header](https://w3id.org/ieee/ieee-1752-schema/header.json)
+- [physical-activity](https://w3id.org/ieee/ieee-1752-schema/physical-activity.json)
 - [time-frame](https://w3id.org/ieee/ieee-1752-schema/time-frame.json)
 - [time-interval](https://w3id.org/ieee/ieee-1752-schema/time-interval.json)
 - [total-sleep-time](https://w3id.org/ieee/ieee-1752-schema/total-sleep-time.json)
