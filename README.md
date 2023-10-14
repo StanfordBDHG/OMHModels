@@ -32,14 +32,14 @@ The following schemas are currently supported by this package:
 ### IEEE 1752
 
 - [body-posture](https://w3id.org/ieee/ieee-1752-schema/body-posture.json)
-- [data-point-1.0](https://w3id.org/ieee/ieee-1752-schema/data-point.json)
+- [data-point](https://w3id.org/ieee/ieee-1752-schema/data-point.json)
 - [date-time](https://w3id.org/ieee/ieee-1752-schema/date-time.json)
 - [descriptive-statistic](https://w3id.org/ieee/ieee-1752-schema/descriptive-statistic.json)
 - [descriptive-statistic-denominator](https://w3id.org/ieee/ieee-1752-schema/descriptive-statistic-denominator.json)
 - [duration-unit-value](https://w3id.org/ieee/ieee-1752-schema/duration-unit-value.json)
 - [duration-unit-value-range](https://w3id.org/ieee/ieee-1752-schema/duration-unit-value-range.json)
 - [frequency-unit-value](https://w3id.org/ieee/ieee-1752-schema/frequency-unit-value.json)
-- [schema-id-1.0](https://w3id.org/ieee/ieee-1752-schema/schema-id.json)
+- [schema-id](https://w3id.org/ieee/ieee-1752-schema/schema-id.json)
 - [header](https://w3id.org/ieee/ieee-1752-schema/header.json)
 - [time-frame](https://w3id.org/ieee/ieee-1752-schema/time-frame.json)
 - [time-interval](https://w3id.org/ieee/ieee-1752-schema/time-interval.json)
