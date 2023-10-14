@@ -81,7 +81,11 @@ To create an instance of the `TotalSleepTime` struct:
 ```swift
 let sleepTime = TotalSleepTime(
     totalSleepTime: DurationUnitValue(value: 8, unit: .hour),
-    effectiveTimeFrame: TimeFrame(start: Date(), end: nil),
+    effectiveTimeFrame: TimeFrame(timeInterval: 
+        TimeInterval(
+            startDateTime: // Date, 
+            endDateTime: // Date
+        ),
     isMainSleep: true,
     descriptiveStatistic: .average,
     descriptiveStatisticDenominator: .week
