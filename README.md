@@ -72,7 +72,7 @@ The following schemas are currently supported by this package:
 
 The `OMHModels` package can be used to represent mobile health data in accordance with the above schemas within your iOS application. 
 
-Below is an example using `TotalSleepTime`, although the same instructions will apply to any schema in the package.
+Below is an example using `TotalSleepTime`, although the same instructions apply to any schema in the package.
 
 ### Initialization 
 
