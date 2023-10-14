@@ -12,22 +12,22 @@ import PackageDescription
 
 
 let package = Package(
-    name: "TemplatePackage",
+    name: "OMHModels",
     platforms: [
         .iOS(.v16),
         .watchOS(.v9)
     ],
     products: [
-        .library(name: "TemplatePackage", targets: ["TemplatePackage"])
+        .library(name: "OMHModels", targets: ["OMHModels"])
     ],
     targets: [
         .target(
-            name: "TemplatePackage"
+            name: "OMHModels"
         ),
         .testTarget(
-            name: "TemplatePackageTests",
+            name: "OMHModelsTests",
             dependencies: [
-                .target(name: "TemplatePackage")
+                .target(name: "OMHModels")
             ]
         )
     ]
