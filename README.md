@@ -1,6 +1,6 @@
 <!--
                   
-This source file is part of the TemplatePackage open source project
+This source file is part of the OMHModels open source project
 
 SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
 
@@ -32,7 +32,7 @@ This project is not officially endorsed by Open mHealth or IEEE.
 
 ## Contributors
 This project is developed as part of the Stanford Byers Center for Biodesign at Stanford University.
-See [CONTRIBUTORS.md](https://github.com/StanfordBDHG/TemplatePackage/tree/main/CONTRIBUTORS.md) for a full list of all TemplatePackage contributors.
+See [CONTRIBUTORS.md](https://github.com/StanfordBDHG/OMHModels/tree/main/CONTRIBUTORS.md) for a full list of all TemplatePackage contributors.
 
 ![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-light.png#gh-light-mode-only)
 ![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-dark.png#gh-dark-mode-only)
