@@ -74,7 +74,7 @@ The `OMHModels` package can be used to represent mobile health data in accordanc
 
 Below is an example using `TotalSleepTime`, although the same instructions will apply to any schema in the package.
 
-1. Initialization 
+### Initialization 
 
 To create an instance of the `TotalSleepTime` struct:
 
@@ -88,7 +88,7 @@ let sleepTime = TotalSleepTime(
 )
 ```
 
-2. Encoding to JSON 
+### Encoding to JSON 
 
 To encode the `TotalSleepTime` instance to JSON:
 
@@ -108,7 +108,7 @@ do {
 }
 ```
 
-3. Decoding from JSON
+### Decoding from JSON
 
 To decode a JSON string back to a `TotalSleepTime` instance:
 
