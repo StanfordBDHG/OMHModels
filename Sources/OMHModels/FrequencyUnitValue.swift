@@ -15,7 +15,7 @@ public struct FrequencyUnitValue: Schema, Equatable {
     public static let schemaId = SchemaId(namespace: .ieee, name: "frequency-unit-value", version: "1.0")
     
     /// Time window in which the event occurs or should occur: e.g., in twice a day every other day
-    public var timeWindow: DurationUnitValue
+    public var timeWindow: TimeWindow
     
     /// How many times the event occurs or should occur in the time window
     public var numberOfTimes: Int

@@ -1,5 +1,5 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -38,10 +38,7 @@ class HeaderTests: XCTestCase {
         )
         let modality = Modality.selfReported
         let acquisitionRate = FrequencyUnitValue(
-            timeWindow: DurationUnitValue(
-                unit: TimeUnit.h,
-                value: 1
-            ),
+            timeWindow: TimeWindow.duration(DurationUnitValue(unit: TimeUnit.h, value: 1.0)),
             numberOfTimes: 10
         )
         let externalDatasheet = ExternalDataSheet(datasheetReference: "reference")

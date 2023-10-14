@@ -1,5 +1,5 @@
 //
-// This source file is part of the HealthKitOnOMH open source project
+// This source file is part of the OMHModels open source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 
-/// A type representing a value paired with a unit specific to blood pressure measurements.
+/// A type representing a value paired with a unit specific to blood pressure measurements
 public typealias BloodPressureUnitValue = TypedUnitValue<BloodPressureUnit>
 
 /// Units for a blood pressure measurement
