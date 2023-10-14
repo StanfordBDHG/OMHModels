@@ -68,6 +68,63 @@ The following schemas are currently supported by this package:
 - [temporal-relationship-to-physical-activity](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_temporal-relationship-to-physical-activity)
 - [temporal-relationship-to-sleep](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_temporal-relationship-to-sleep)
 
+## Usage Example
+
+The `OMHModels` package can be used to represent mobile health data in accordance with the above schemas within your iOS application. 
+
+Below is an example using `TotalSleepTime`, although the same instructions will apply to any schema in the package.
+
+1. Initialization 
+
+To create an instance of the `TotalSleepTime` struct:
+
+```swift
+let sleepTime = TotalSleepTime(
+    totalSleepTime: DurationUnitValue(value: 8, unit: .hour),
+    effectiveTimeFrame: TimeFrame(start: Date(), end: nil),
+    isMainSleep: true,
+    descriptiveStatistic: .average,
+    descriptiveStatisticDenominator: .week
+)
+```
+
+2. Encoding to JSON 
+
+To encode the `TotalSleepTime` instance to JSON:
+
+```swift
+let json: String
+do {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes, .sortedKeys]
+    
+    // Note that both IEEE 1752 and Open mHealth use snake case for its properties when represneted in JSON
+    encoder.keyCodingStrategy = .convertToSnakeCase
+    
+    let data = try encoder.encode(sleepTime)
+    json = String(data: jsonData, encoding: .utf8)
+} catch {
+    print("Error encoding to JSON: \(error)")
+}
+```
+
+3. Decoding from JSON
+
+To decode a JSON string back to a `TotalSleepTime` instance:
+
+```swift
+let jsonString = /* your JSON string here */
+if let jsonData = jsonString.data(using: .utf8) {
+    do {
+        let decoder = JSONDecoder()
+        let decodedSleepTime = try decoder.decode(TotalSleepTime.self, from: jsonData)
+        print(decodedSleepTime)
+    } catch {
+        print("Error decoding from JSON: \(error)")
+    }
+}
+```
+
 ## License
 This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordBDHG/OMHModels/tree/main/LICENSES) for more information.
 
