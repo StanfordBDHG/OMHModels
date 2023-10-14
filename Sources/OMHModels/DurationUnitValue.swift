@@ -9,5 +9,6 @@
 import Foundation
 
 
-/// Generated from IEEE 1752.1 `duration-unit-value:1.0` (https://w3id.org/ieee/ieee-1752-schema/duration-unit-value.json)
+/// This schema represents a duration or length of time.
+/// Generated from IEEE 1752.1 `duration-unit-value-1.0` (https://w3id.org/ieee/ieee-1752-schema/duration-unit-value.json)
 public typealias DurationUnitValue = TypedUnitValue<TimeUnit>
