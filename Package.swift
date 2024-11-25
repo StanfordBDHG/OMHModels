@@ -15,7 +15,7 @@ import PackageDescription
 let package = Package(
     name: "OMHModels",
     platforms: [
-        .iOS(.v16),
+        .iOS(.v16)
     ],
     products: [
         .library(name: "OMHModels", targets: ["OMHModels"])
