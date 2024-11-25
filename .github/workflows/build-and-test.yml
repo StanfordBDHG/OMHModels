@@ -16,42 +16,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  packageios:
-    name: Build and Test Swift Package iOS
+  buildandtest:
+    name: Build and Test Swift Package
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
+      runsonlabels: '["macOS", "self-hosted"]'
       scheme: OMHModels
       artifactname: OMHModels.xcresult
-  packagewatchos:
-    name: Build and Test Swift Package watchOS
+  buildandtestlatest:
+    name: Build and Test Swift Package Latest
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
+      runsonlabels: '["macOS", "self-hosted"]'
       scheme: OMHModels
-      resultBundle: OMHModelsWatchOS.xcresult
-      destination: 'platform=watchOS Simulator,name=Apple Watch Series 8 (45mm)'
-      artifactname: OMHModelsWatchOS.xcresult
-  packagevisionos:
-    name: Build and Test Swift Package visionOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    with:
       xcodeversion: latest
-      scheme: OMHModels
-      resultBundle: OMHModelsVisionOS.xcresult
-      destination: 'platform=visionOS Simulator,name=Apple Vision Pro'
-      artifactname: OMHModelsVisionOS.xcresult
-  codeql:
-    name: CodeQL
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    with:
-      codeql: true
-      xcodeversion: '14.3.1'
-      scheme: OMHModels
-    permissions:
-      security-events: write
-      actions: read
+      swiftVersion: 6
+      resultBundle: OMHModelsLatest.xcresult
+      artifactname: OMHModelsLatest.xcresult
   uploadcoveragereport:
     name: Upload Coverage Report
-    needs: [packageios, packagewatchos, packagevisionos]
+    needs: [buildandtest]
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
-      coveragereports: OMHModels.xcresult OMHModelsWatchOS.xcresult OMHModelsVisionOS.xcresult
+      coveragereports: OMHModels.xcresult
+    secrets:
+      token: ${{ secrets.CODECOV_TOKEN }}
