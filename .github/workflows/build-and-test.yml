@@ -23,16 +23,6 @@ jobs:
       runsonlabels: '["macOS", "self-hosted"]'
       scheme: OMHModels
       artifactname: OMHModels.xcresult
-  buildandtestlatest:
-    name: Build and Test Swift Package Latest
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    with:
-      runsonlabels: '["macOS", "self-hosted"]'
-      scheme: OMHModels
-      xcodeversion: latest
-      swiftVersion: 6
-      resultBundle: OMHModelsLatest.xcresult
-      artifactname: OMHModelsLatest.xcresult
   uploadcoveragereport:
     name: Upload Coverage Report
     needs: [buildandtest]
