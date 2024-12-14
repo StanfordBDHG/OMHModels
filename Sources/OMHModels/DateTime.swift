@@ -12,17 +12,13 @@ import Foundation
 public struct DateTime: Schema, Equatable {
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "date-time", version: "1.0")
-    
-    private static let formatter: ISO8601DateFormatter = {
-        let formatter = ISO8601DateFormatter()
-        return formatter
-    }()
 
     let value: String // The value should be in ISO8601 format as per the schema.
 
 
     public init(date: Date) {
-        self.value = DateTime.formatter.string(from: date)
+        let formatter = ISO8601DateFormatter()
+        self.value = formatter.string(from: date)
     }
     
     public init(from decoder: Decoder) throws {
