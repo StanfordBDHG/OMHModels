@@ -14,6 +14,7 @@ SPDX-License-Identifier: MIT
 [![codecov](https://codecov.io/gh/StanfordBDHG/OMHModels/branch/main/graph/badge.svg?token=X7BQYSUKOH)](https://codecov.io/gh/StanfordBDHG/SwiftPackageTemplate)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FStanfordBDHG%2FOMHModels%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/StanfordBDHG/OMHModels)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FStanfordBDHG%2FOMHModels%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/StanfordBDHG/OMHModels)
+[![DOI](https://zenodo.org/badge/704758245.svg)](https://doi.org/10.5281/zenodo.15581076)
 
 OMHModels is a Swift library for using [Open mHealth](https://www.openmhealth.org/) and [IEEE 1752](https://opensource.ieee.org/omh/1752) schemas to represent mobile health data in iOS projects.
 
