@@ -7,43 +7,49 @@
 //
 
 @testable import OMHModels
-import XCTest
+import Testing
+import Foundation
 
 
-final class TypedUnitValueRangeTests: XCTestCase {
+@Suite("Typed Unit Value Range Tests")
+struct TypedUnitValueRangeTests {
     // Dummy unit for testing
     struct TestUnit: UnitProtocol, Equatable {
         var name: String
     }
     
+    @Test("Initialization")
     func testInitialization() {
         let range = TypedUnitValueRange(unit: TestUnit(name: "TestUnit1"), lowValue: 10.0, highValue: 20.0)
-        XCTAssertEqual(range.unit, TestUnit(name: "TestUnit1"))
-        XCTAssertEqual(range.lowValue, 10.0)
-        XCTAssertEqual(range.highValue, 20.0)
+        #expect(range.unit == TestUnit(name: "TestUnit1"))
+        #expect(range.lowValue == 10.0)
+        #expect(range.highValue == 20.0)
     }
     
+    @Test("Initialization with Integers")
     func testInitializationWithIntegers() {
         let range = TypedUnitValueRange(unit: TestUnit(name: "TestUnit2"), lowValue: 10, highValue: 20)
-        XCTAssertEqual(range.unit, TestUnit(name: "TestUnit2"))
-        XCTAssertEqual(range.lowValue, 10.0)
-        XCTAssertEqual(range.highValue, 20.0)
+        #expect(range.unit == TestUnit(name: "TestUnit2"))
+        #expect(range.lowValue == 10.0)
+        #expect(range.highValue == 20.0)
     }
     
+    @Test("Equatable")
     func testEquatable() {
         let range1 = TypedUnitValueRange(unit: TestUnit(name: "TestUnit3"), lowValue: 10, highValue: 20)
         let range2 = TypedUnitValueRange(unit: TestUnit(name: "TestUnit3"), lowValue: 10, highValue: 20)
         let range3 = TypedUnitValueRange(unit: TestUnit(name: "TestUnit3"), lowValue: 15, highValue: 25)
         
-        XCTAssertEqual(range1, range2)
-        XCTAssertNotEqual(range1, range3)
+        #expect(range1 == range2)
+        #expect(range1 != range3)
     }
     
+    @Test("Encoding and Decoding")
     func testEncodingAndDecoding() throws {
         let range = TypedUnitValueRange(unit: TestUnit(name: "TestUnit4"), lowValue: 10, highValue: 20)
         let encodedData = try JSONEncoder().encode(range)
         let decodedRange = try JSONDecoder().decode(TypedUnitValueRange<TestUnit>.self, from: encodedData)
         
-        XCTAssertEqual(range, decodedRange)
+        #expect(range == decodedRange)
     }
 }

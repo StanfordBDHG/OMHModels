@@ -6,9 +6,12 @@
 // SPDX-License-Identifier: MIT
 
 @testable import OMHModels
-import XCTest
+import Testing
+import Foundation
 
-class PhysicalActivityTests: XCTestCase {
+@Suite("Physical Activity Tests")
+struct PhysicalActivityTests {
+    @Test("Physical Activity")
     func testPhysicalActivity() {
         // Create mock values
         let mockBaseMovementQuantity = TypedUnitValue<BaseMovementQuantityUnit>(unit: .steps, value: 100)
@@ -39,14 +42,14 @@ class PhysicalActivityTests: XCTestCase {
             descriptiveStatisticDenominator: mockDescriptiveStatisticDenominator
         )
         
-        XCTAssertEqual(activity.activityName, "Walking")
-        XCTAssertEqual(activity.baseMovementQuantity, mockBaseMovementQuantity)
-        XCTAssertEqual(activity.effectiveTimeFrame, mockTimeFrame)
-        XCTAssertEqual(activity.distance, mockDistance)
-        XCTAssertEqual(activity.kcalBurned, mockKcalBurned)
-        XCTAssertEqual(activity.reportedActivityIntensity, .light)
-        XCTAssertEqual(activity.metValue, 3.5)
-        XCTAssertEqual(activity.descriptiveStatistic, mockDescriptiveStatistic)
-        XCTAssertEqual(activity.descriptiveStatisticDenominator, mockDescriptiveStatisticDenominator)
+        #expect(activity.activityName == "Walking")
+        #expect(activity.baseMovementQuantity == mockBaseMovementQuantity)
+        #expect(activity.effectiveTimeFrame == mockTimeFrame)
+        #expect(activity.distance == mockDistance)
+        #expect(activity.kcalBurned == mockKcalBurned)
+        #expect(activity.reportedActivityIntensity == .light)
+        #expect(activity.metValue == 3.5)
+        #expect(activity.descriptiveStatistic == mockDescriptiveStatistic)
+        #expect(activity.descriptiveStatisticDenominator == mockDescriptiveStatisticDenominator)
     }
 }
