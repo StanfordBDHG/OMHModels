@@ -6,10 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 @testable import OMHModels
-import XCTest
+import Testing
 
-class HeaderTests: XCTestCase {
+@Suite("Header Tests")
+struct HeaderTests {
+    @Test("Default initialization")
     func testDefaultInit() {
         let dateTime = DateTime(date: .now)
         let schemaId = SchemaId(
@@ -20,14 +23,15 @@ class HeaderTests: XCTestCase {
         
         let header = Header(sourceCreationDateTime: dateTime, schemaId: schemaId)
         
-        XCTAssertNotNil(header.uuid)
-        XCTAssertEqual(header.sourceCreationDateTime, dateTime)
-        XCTAssertEqual(header.schemaId, schemaId)
-        XCTAssertNil(header.modality)
-        XCTAssertNil(header.acquisitionRate)
-        XCTAssertTrue(header.externalDatasheets.isEmpty)
+        #expect(!header.uuid.isEmpty)
+        #expect(header.sourceCreationDateTime == dateTime)
+        #expect(header.schemaId == schemaId)
+        #expect(header.modality == nil)
+        #expect(header.acquisitionRate == nil)
+        #expect(header.externalDatasheets.isEmpty)
     }
     
+    @Test("Full initialization")
     func testFullInit() {
         let uuid = UUID().uuidString
         let dateTime = DateTime(date: .now)
@@ -52,11 +56,11 @@ class HeaderTests: XCTestCase {
             externalDatasheets: [externalDatasheet]
         )
         
-        XCTAssertEqual(header.uuid, uuid)
-        XCTAssertEqual(header.sourceCreationDateTime, dateTime)
-        XCTAssertEqual(header.schemaId, schemaId)
-        XCTAssertEqual(header.modality, modality)
-        XCTAssertEqual(header.acquisitionRate, acquisitionRate)
-        XCTAssertEqual(header.externalDatasheets, [externalDatasheet])
+        #expect(header.uuid == uuid)
+        #expect(header.sourceCreationDateTime == dateTime)
+        #expect(header.schemaId == schemaId)
+        #expect(header.modality == modality)
+        #expect(header.acquisitionRate == acquisitionRate)
+        #expect(header.externalDatasheets == [externalDatasheet])
     }
 }

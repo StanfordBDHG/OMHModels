@@ -6,11 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 @testable import OMHModels
-import XCTest
+import Testing
 
 
-class TimeWindowTests: XCTestCase {
+@Suite("Time Window Tests")
+struct TimeWindowTests {
+    @Test("Encode and Decode Duration")
     func testEncodeAndDecodeDuration() throws {
         let originalValue = TimeWindow.duration(
             TypedUnitValue(
@@ -22,9 +25,10 @@ class TimeWindowTests: XCTestCase {
         let data = try JSONEncoder().encode(originalValue)
         let decodedValue = try JSONDecoder().decode(TimeWindow.self, from: data)
         
-        XCTAssertEqual(originalValue, decodedValue)
+        #expect(originalValue == decodedValue)
     }
 
+    @Test("Encode and Decode Duration Range")
     func testEncodeAndDecodeDurationRange() throws {
         let originalValue = TimeWindow.durationRange(
             TypedUnitValueRange(
@@ -37,11 +41,17 @@ class TimeWindowTests: XCTestCase {
         let data = try JSONEncoder().encode(originalValue)
         let decodedValue = try JSONDecoder().decode(TimeWindow.self, from: data)
         
-        XCTAssertEqual(originalValue, decodedValue)
+        #expect(originalValue == decodedValue)
     }
 
+    @Test("Decode Invalid Data")
     func testDecodeInvalidData() throws {
-        let invalidData = try XCTUnwrap("Invalid Data".data(using: .utf8))
-        XCTAssertThrowsError(try JSONDecoder().decode(TimeWindow.self, from: invalidData))
+        guard let invalidData = "Invalid Data".data(using: .utf8) else {
+            Issue.record("Failed to create invalid data")
+            return
+        }
+        #expect(throws: (any Error).self) {
+            try JSONDecoder().decode(TimeWindow.self, from: invalidData)
+        }
     }
 }

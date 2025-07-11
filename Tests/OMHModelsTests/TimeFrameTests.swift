@@ -6,33 +6,43 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 @testable import OMHModels
-import XCTest
+import Testing
 
 
-final class TimeFrameTests: XCTestCase {
+@Suite("Time Frame Tests")
+struct TimeFrameTests {
     var startDate: Date {
         get throws {
             let dateComponents = DateComponents(year: 1891, month: 10, day: 1, hour: 12, minute: 0, second: 0) // Date Stanford University opened (https://www.stanford.edu/about/history/)
-            return try XCTUnwrap(Calendar.current.date(from: dateComponents))
+            guard let date = Calendar.current.date(from: dateComponents) else {
+                throw TestError.invalidDate
+            }
+            return date
         }
     }
     
     var endDate: Date {
         get throws {
             let dateComponents = DateComponents(year: 1891, month: 10, day: 1, hour: 12, minute: 0, second: 42)
-            return try XCTUnwrap(Calendar.current.date(from: dateComponents))
+            guard let date = Calendar.current.date(from: dateComponents) else {
+                throw TestError.invalidDate
+            }
+            return date
         }
     }
     
+    @Test("Time Frame DateTime Initializer")
     func testTimeFrameDateTimeInitializer() {
         let sampleDateTime = DateTime(date: .now)
         let timeFrame = TimeFrame(dateTime: sampleDateTime)
         
-        XCTAssertNotNil(timeFrame.dateTime)
-        XCTAssertNil(timeFrame.timeInterval)
+        #expect(timeFrame.dateTime != nil)
+        #expect(timeFrame.timeInterval == nil)
     }
     
+    @Test("Time Frame Equality")
     func testTimeFrameEquality() throws {
         let sampleDateTime = DateTime(date: .now)
         let sampleTimeInterval = TimeInterval(startDateTime: DateTime(date: try startDate), endDateTime: DateTime(date: try endDate))
@@ -41,10 +51,11 @@ final class TimeFrameTests: XCTestCase {
         let timeFrame2 = TimeFrame(dateTime: sampleDateTime)
         let timeFrame3 = TimeFrame(timeInterval: sampleTimeInterval)
         
-        XCTAssertEqual(timeFrame1, timeFrame2)
-        XCTAssertNotEqual(timeFrame1, timeFrame3)
+        #expect(timeFrame1 == timeFrame2)
+        #expect(timeFrame1 != timeFrame3)
     }
     
+    @Test("Time Frame Encoding")
     func testTimeFrameEncoding() throws {
         let sampleDateTime = DateTime(date: .now)
         let sampleTimeInterval = TimeInterval(startDateTime: DateTime(date: try startDate), endDateTime: DateTime(date: try endDate))
@@ -57,26 +68,27 @@ final class TimeFrameTests: XCTestCase {
         do {
             let dateTimeData = try encoder.encode(timeFrame1)
             if let encodedString = String(data: dateTimeData, encoding: .utf8) {
-                XCTAssertTrue(encodedString.contains("date_time"))
+                #expect(encodedString.contains("date_time"))
             } else {
-                XCTFail("Failed to convert encoded data to string for dateTime")
+                Issue.record("Failed to convert encoded data to string for dateTime")
             }
         } catch {
-            XCTFail("Failed to encode TimeFrame for dateTime: \(error)")
+            Issue.record("Failed to encode TimeFrame for dateTime: \(error)")
         }
         
         do {
             let timeIntervalData = try encoder.encode(timeFrame2)
             if let encodedString = String(data: timeIntervalData, encoding: .utf8) {
-                XCTAssertTrue(encodedString.contains("time_interval"))
+                #expect(encodedString.contains("time_interval"))
             } else {
-                XCTFail("Failed to convert encoded data to string for timeInterval")
+                Issue.record("Failed to convert encoded data to string for timeInterval")
             }
         } catch {
-            XCTFail("Failed to encode TimeFrame for timeInterval: \(error)")
+            Issue.record("Failed to encode TimeFrame for timeInterval: \(error)")
         }
     }
     
+    @Test("Time Frame Decoding")
     func testTimeFrameDecoding() throws {
         // A time frame that consists of a single date_time
         guard let dateTimeJson = """
@@ -84,7 +96,7 @@ final class TimeFrameTests: XCTestCase {
                 "date_time": "2013-02-05T07:25:00.123Z"
             }
             """.data(using: .utf8) else {
-            XCTFail("Failed to convert dateTime JSON string to Data")
+            Issue.record("Failed to convert dateTime JSON string to Data")
             return
         }
         
@@ -100,7 +112,7 @@ final class TimeFrameTests: XCTestCase {
                 }
             }
             """.data(using: .utf8) else {
-            XCTFail("Failed to convert timeInterval JSON string to Data")
+            Issue.record("Failed to convert timeInterval JSON string to Data")
             return
         }
         
@@ -108,18 +120,18 @@ final class TimeFrameTests: XCTestCase {
         
         do {
             let dateTimeTimeFrame = try decoder.decode(TimeFrame.self, from: dateTimeJson)
-            XCTAssertNotNil(dateTimeTimeFrame.dateTime)
-            XCTAssertNil(dateTimeTimeFrame.timeInterval)
+            #expect(dateTimeTimeFrame.dateTime != nil)
+            #expect(dateTimeTimeFrame.timeInterval == nil)
         } catch {
-            XCTFail("Failed to decode TimeFrame for dateTime: \(error)")
+            Issue.record("Failed to decode TimeFrame for dateTime: \(error)")
         }
         
         do {
             let timeIntervalTimeFrame = try decoder.decode(TimeFrame.self, from: timeIntervalJson)
-            XCTAssertNil(timeIntervalTimeFrame.dateTime)
-            XCTAssertNotNil(timeIntervalTimeFrame.timeInterval)
+            #expect(timeIntervalTimeFrame.dateTime == nil)
+            #expect(timeIntervalTimeFrame.timeInterval != nil)
         } catch {
-            XCTFail("Failed to decode TimeFrame for timeInterval: \(error)")
+            Issue.record("Failed to decode TimeFrame for timeInterval: \(error)")
         }
     }
 }
