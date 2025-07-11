@@ -5,9 +5,9 @@
 //
 // SPDX-License-Identifier: MIT
 
+import Foundation
 @testable import OMHModels
 import Testing
-import Foundation
 
 @Suite("Physical Activity Tests")
 struct PhysicalActivityTests {

@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 @testable import OMHModels
 import Testing
-import Foundation
 
 
 @Suite("Typed Unit Value Tests")

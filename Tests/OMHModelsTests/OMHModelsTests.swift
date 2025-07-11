@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 @testable import OMHModels
 import Testing
-import Foundation
 
 
 @Suite("OMH Models Tests")
@@ -251,8 +251,4 @@ struct OMHModelsTests {
         
         #expect(healthKitUnit.value == 100)
     }
-}
-
-enum TestError: Error {
-    case invalidDate
 }
