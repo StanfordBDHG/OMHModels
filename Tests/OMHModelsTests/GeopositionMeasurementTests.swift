@@ -12,8 +12,8 @@ import Testing
 
 
 @Suite("Geoposition Measurement Tests")
+// swiftlint:disable type_body_length attributes
 struct GeopositionMeasurementTests {
-    
     var sampleDateTime: DateTime {
         DateTime(date: Date())
     }
@@ -164,7 +164,7 @@ struct GeopositionMeasurementTests {
         #expect(geoposition.effectiveTimeFrame == sampleTimeFrame)
         #expect(geoposition.elevation == nil)
         #expect(geoposition.numberOfSatellitesInView == nil)
-        #expect(geoposition.satelliteSignalStrengths == nil)
+        #expect(geoposition.satelliteSignalStrengths.isEmpty)
         #expect(geoposition.numberOfSatellitesInFix == nil)
         #expect(geoposition.positioningSystem == nil)
     }
@@ -308,9 +308,9 @@ struct GeopositionMeasurementTests {
         #expect(geoposition.elevation?.unit == .m)
         #expect(geoposition.elevation?.value == 10.0)
         #expect(geoposition.numberOfSatellitesInView == 12)
-        #expect(geoposition.satelliteSignalStrengths?.count == 2)
-        #expect(geoposition.satelliteSignalStrengths?[0].value == 25)
-        #expect(geoposition.satelliteSignalStrengths?[1].value == 30)
+        #expect(geoposition.satelliteSignalStrengths.count == 2)
+        #expect(geoposition.satelliteSignalStrengths[0].value == 25)
+        #expect(geoposition.satelliteSignalStrengths[1].value == 30)
         #expect(geoposition.numberOfSatellitesInFix == 8)
         #expect(geoposition.positioningSystem == .GPS)
     }

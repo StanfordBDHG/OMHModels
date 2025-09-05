@@ -9,6 +9,8 @@ import Foundation
 
 /// Known positioning systems
 public enum PositioningSystem: String, Codable, CaseIterable {
+    // swiftlint:disable identifier_name
+    // We disable this rule because we must use case names as defined by Open mHealth.
     case GPS
     case GLONASS
     case Galileo
@@ -16,6 +18,7 @@ public enum PositioningSystem: String, Codable, CaseIterable {
     case COMPASS
     case IRNSS
     case QZSS
+    // swiftlint:enable identifier_name
 }
 
 /// Signal-to-noise ratio measurement in decibels
@@ -52,8 +55,11 @@ public struct SatelliteSignalStrength: Codable, Equatable {
 /// Elevation measurement with restricted units (meters or feet)
 public struct ElevationMeasurement: Codable, Equatable {
     public enum ElevationUnit: String, Codable {
+        // swiftlint:disable identifier_name
+        // We disable this rule because we must use case names as defined by Open mHealth.
         case m
         case ft
+        // swiftlint:enable identifier_name
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -86,7 +92,7 @@ public struct ElevationMeasurement: Codable, Equatable {
 public struct GeopositionMeasurement: Schema, Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
         case latitude
-        case longitude  
+        case longitude
         case elevation
         case effectiveTimeFrame = "effective_time_frame"
         case numberOfSatellitesInView = "number_of_satellites_in_view"
@@ -114,7 +120,7 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable {
     public let numberOfSatellitesInView: Int?
     
     /// Signal-to-noise ratios (SNR) expressed in decibels (dB)
-    public let satelliteSignalStrengths: [SatelliteSignalStrength]?
+    public let satelliteSignalStrengths: [SatelliteSignalStrength]
     
     /// The number of satellites actually used to determine position
     public let numberOfSatellitesInFix: Int?
@@ -125,12 +131,12 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable {
     public init(
         latitude: PlaneAngleUnitValue,
         longitude: PlaneAngleUnitValue,
-        elevation: ElevationMeasurement? = nil,
         effectiveTimeFrame: TimeFrame,
+        elevation: ElevationMeasurement? = nil,
         numberOfSatellitesInView: Int? = nil,
-        satelliteSignalStrengths: [SatelliteSignalStrength]? = nil,
         numberOfSatellitesInFix: Int? = nil,
-        positioningSystem: PositioningSystem? = nil
+        positioningSystem: PositioningSystem? = nil,
+        satelliteSignalStrengths: [SatelliteSignalStrength] = []
     ) {
         self.latitude = latitude
         self.longitude = longitude
@@ -158,7 +164,7 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable {
         effectiveTimeFrame = timeFrame
         
         numberOfSatellitesInView = try container.decodeIfPresent(Int.self, forKey: .numberOfSatellitesInView)
-        satelliteSignalStrengths = try container.decodeIfPresent([SatelliteSignalStrength].self, forKey: .satelliteSignalStrengths)
+        satelliteSignalStrengths = try container.decodeIfPresent([SatelliteSignalStrength].self, forKey: .satelliteSignalStrengths) ?? []
         numberOfSatellitesInFix = try container.decodeIfPresent(Int.self, forKey: .numberOfSatellitesInFix)
         positioningSystem = try container.decodeIfPresent(PositioningSystem.self, forKey: .positioningSystem)
     }
@@ -171,7 +177,9 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable {
         try container.encodeIfPresent(elevation, forKey: .elevation)
         try container.encode(effectiveTimeFrame, forKey: .effectiveTimeFrame)
         try container.encodeIfPresent(numberOfSatellitesInView, forKey: .numberOfSatellitesInView)
-        try container.encodeIfPresent(satelliteSignalStrengths, forKey: .satelliteSignalStrengths)
+        if !satelliteSignalStrengths.isEmpty {
+            try container.encode(satelliteSignalStrengths, forKey: .satelliteSignalStrengths)
+        }
         try container.encodeIfPresent(numberOfSatellitesInFix, forKey: .numberOfSatellitesInFix)
         try container.encodeIfPresent(positioningSystem, forKey: .positioningSystem)
     }

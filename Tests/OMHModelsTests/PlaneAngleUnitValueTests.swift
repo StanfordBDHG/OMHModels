@@ -13,7 +13,6 @@ import Testing
 
 @Suite("Plane Angle Unit Value Tests")
 struct PlaneAngleUnitValueTests {
-    
     @Test("Plane Angle Unit Enum Cases")
     func testPlaneAngleUnitEnumCases() {
         #expect(PlaneAngleUnit.rad.rawValue == "rad")
