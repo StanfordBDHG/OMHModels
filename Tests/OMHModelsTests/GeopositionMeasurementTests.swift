@@ -181,12 +181,12 @@ struct GeopositionMeasurementTests {
         let geoposition = GeopositionMeasurement(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
-            elevation: elevation,
             effectiveTimeFrame: sampleTimeFrame,
+            elevation: elevation,
             numberOfSatellitesInView: 8,
-            satelliteSignalStrengths: signalStrengths,
             numberOfSatellitesInFix: 6,
-            positioningSystem: .GPS
+            positioningSystem: .GPS,
+            satelliteSignalStrengths: signalStrengths
         )
         
         #expect(geoposition.latitude == sampleLatitude)
@@ -196,7 +196,7 @@ struct GeopositionMeasurementTests {
         #expect(geoposition.numberOfSatellitesInView == 8)
         #expect(geoposition.satelliteSignalStrengths == signalStrengths)
         #expect(geoposition.numberOfSatellitesInFix == 6)
-        #expect(geoposition.positioningSystem == .GPS)
+        #expect(geoposition.positioningSystem == PositioningSystem.GPS)
     }
     
     @Test("Geoposition Measurement Encoding")
@@ -205,8 +205,8 @@ struct GeopositionMeasurementTests {
         let geoposition = GeopositionMeasurement(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
-            elevation: elevation,
             effectiveTimeFrame: sampleTimeFrame,
+            elevation: elevation,
             numberOfSatellitesInView: 10,
             numberOfSatellitesInFix: 8,
             positioningSystem: .Galileo
@@ -312,7 +312,7 @@ struct GeopositionMeasurementTests {
         #expect(geoposition.satelliteSignalStrengths[0].value == 25)
         #expect(geoposition.satelliteSignalStrengths[1].value == 30)
         #expect(geoposition.numberOfSatellitesInFix == 8)
-        #expect(geoposition.positioningSystem == .GPS)
+        #expect(geoposition.positioningSystem == PositioningSystem.GPS)
     }
     
     @Test("Geoposition Measurement Invalid Time Frame Decoding")
@@ -359,24 +359,24 @@ struct GeopositionMeasurementTests {
         let geoposition1 = GeopositionMeasurement(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
-            elevation: elevation1,
             effectiveTimeFrame: sampleTimeFrame,
+            elevation: elevation1,
             positioningSystem: .GPS
         )
         
         let geoposition2 = GeopositionMeasurement(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
-            elevation: elevation2,
             effectiveTimeFrame: sampleTimeFrame,
+            elevation: elevation2,
             positioningSystem: .GPS
         )
         
         let geoposition3 = GeopositionMeasurement(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
-            elevation: elevation3,
             effectiveTimeFrame: sampleTimeFrame,
+            elevation: elevation3,
             positioningSystem: .GPS
         )
         

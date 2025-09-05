@@ -9,7 +9,7 @@ import Foundation
 
 
 /// The unit of measure of the element. Basic unit is radian (rad). Allowed values are drawn from the SI Plane Angle Units.
-public enum PlaneAngleUnit: String, UnitProtocol {
+public enum PlaneAngleUnit: String, UnitProtocol, Sendable {
     case rad
     case deg
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /// Known positioning systems
-public enum PositioningSystem: String, Codable, CaseIterable {
+public enum PositioningSystem: String, Codable, CaseIterable, Sendable {
     // swiftlint:disable identifier_name
     // We disable this rule because we must use case names as defined by Open mHealth.
     case GPS
@@ -22,7 +22,7 @@ public enum PositioningSystem: String, Codable, CaseIterable {
 }
 
 /// Signal-to-noise ratio measurement in decibels
-public struct SatelliteSignalStrength: Codable, Equatable {
+public struct SatelliteSignalStrength: Codable, Equatable, Sendable {
     private enum CodingKeys: String, CodingKey {
         case unit, value
     }
@@ -53,8 +53,8 @@ public struct SatelliteSignalStrength: Codable, Equatable {
 }
 
 /// Elevation measurement with restricted units (meters or feet)
-public struct ElevationMeasurement: Codable, Equatable {
-    public enum ElevationUnit: String, Codable {
+public struct ElevationMeasurement: Codable, Equatable, Sendable {
+    public enum ElevationUnit: String, Codable, Sendable {
         // swiftlint:disable identifier_name
         // We disable this rule because we must use case names as defined by Open mHealth.
         case m
@@ -89,7 +89,7 @@ public struct ElevationMeasurement: Codable, Equatable {
 
 /// A geographic position measurement
 /// This schema represents a geographic position measurement.
-public struct GeopositionMeasurement: Schema, Codable, Equatable {
+public struct GeopositionMeasurement: Schema, Codable, Equatable, Sendable {
     private enum CodingKeys: String, CodingKey {
         case latitude
         case longitude
