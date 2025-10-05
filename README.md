@@ -59,6 +59,7 @@ The following schemas are currently supported by this package:
 - [body-mass-index](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_body-mass-index)
 - [body-temperature](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_body-temperature)
 - [body-weight](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_body-weight)
+- [geoposition-measurement](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_geoposition-measurement)
 - [heart-rate](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_heart-rate)
 - [oxygen-saturation](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_oxygen-saturation)
 -  [part-of-day](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_part-of-day)
