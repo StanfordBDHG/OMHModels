@@ -40,7 +40,7 @@ public enum SurveyScore: Codable, Sendable {
     case number(Double)
     case object([String: String])
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         
         if let numberValue = try? container.decode(Double.self) {
@@ -55,7 +55,7 @@ public enum SurveyScore: Codable, Sendable {
         }
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         
         switch self {

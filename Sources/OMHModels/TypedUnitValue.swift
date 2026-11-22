@@ -30,13 +30,13 @@ public struct TypedUnitValue<T: UnitProtocol>: Codable, Sendable {
         self.value = Double(value)
     }
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         unit = try container.decode(T.self, forKey: .unit)
         value = try container.decode(Double.self, forKey: .value)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(unit, forKey: .unit)
         try container.encode(value, forKey: .value)

@@ -5,7 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
+public import Foundation
 
 
 /// Generated from IEEE 1752.1 `date-time-1.0` (https://w3id.org/ieee/ieee-1752-schema/date-time.json)
@@ -21,12 +21,12 @@ public struct DateTime: Schema, Equatable {
         self.value = formatter.string(from: date)
     }
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         value = try container.decode(String.self)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(value)
     }

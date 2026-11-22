@@ -34,7 +34,7 @@ public struct SatelliteSignalStrength: Codable, Equatable, Sendable {
         self.value = value
     }
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let decodedUnit = try container.decode(String.self, forKey: .unit)
         guard decodedUnit == "dB" else {
@@ -45,7 +45,7 @@ public struct SatelliteSignalStrength: Codable, Equatable, Sendable {
         value = try container.decode(Int.self, forKey: .value)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(unit, forKey: .unit)
         try container.encode(value, forKey: .value)
@@ -74,13 +74,13 @@ public struct ElevationMeasurement: Codable, Equatable, Sendable {
         self.value = value
     }
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         unit = try container.decode(ElevationUnit.self, forKey: .unit)
         value = try container.decode(Double.self, forKey: .value)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(unit, forKey: .unit)
         try container.encode(value, forKey: .value)
@@ -148,7 +148,7 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable, Sendable {
         self.positioningSystem = positioningSystem
     }
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         latitude = try container.decode(PlaneAngleUnitValue.self, forKey: .latitude)
@@ -169,7 +169,7 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable, Sendable {
         positioningSystem = try container.decodeIfPresent(PositioningSystem.self, forKey: .positioningSystem)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(latitude, forKey: .latitude)

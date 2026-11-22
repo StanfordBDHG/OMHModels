@@ -13,7 +13,7 @@ public enum TimeWindow: Codable, Equatable, Sendable {
     case durationRange(DurationUnitValueRange)
     
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let duration = try? container.decode(DurationUnitValue.self) {
             self = .duration(duration)
@@ -35,7 +35,7 @@ public enum TimeWindow: Codable, Equatable, Sendable {
         }
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .duration(let duration):

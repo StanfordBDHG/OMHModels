@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:6.2
 
 //
 // This source file is part of the OMHModels open source project
@@ -15,7 +15,12 @@ import PackageDescription
 let package = Package(
     name: "OMHModels",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
+        .watchOS(.v9),
+        .visionOS(.v1),
+        .tvOS(.v16),
+        .macOS(.v13),
+        .macCatalyst(.v16)
     ],
     products: [
         .library(name: "OMHModels", targets: ["OMHModels"])
@@ -23,12 +28,20 @@ let package = Package(
     dependencies: swiftLintPackage(),
     targets: [
         .target(
-            name: "OMHModels"
+            name: "OMHModels",
+            swiftSettings: [
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault")
+            ],
+            plugins: [] + swiftLintPlugin()
         ),
         .testTarget(
             name: "OMHModelsTests",
             dependencies: [
                 .target(name: "OMHModels")
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("ExistentialAny")
             ],
             plugins: [] + swiftLintPlugin()
         )

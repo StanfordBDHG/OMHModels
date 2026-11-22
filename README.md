@@ -10,8 +10,8 @@ SPDX-License-Identifier: MIT
 
 # OMHModels
 
-[![Build and Test](https://github.com/StanfordBDHG/OMHModels/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StanfordBDHG/OMHModels/actions/workflows/build-and-test.yml)
-[![codecov](https://codecov.io/gh/StanfordBDHG/OMHModels/branch/main/graph/badge.svg?token=X7BQYSUKOH)](https://codecov.io/gh/StanfordBDHG/SwiftPackageTemplate)
+[![CI](https://github.com/StanfordBDHG/OMHModels/actions/workflows/ci.yml/badge.svg)](https://github.com/StanfordBDHG/OMHModels/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/StanfordBDHG/OMHModels/branch/main/graph/badge.svg?token=X7BQYSUKOH)](https://codecov.io/gh/StanfordBDHG/OMHModels)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FStanfordBDHG%2FOMHModels%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/StanfordBDHG/OMHModels)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FStanfordBDHG%2FOMHModels%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/StanfordBDHG/OMHModels)
 [![DOI](https://zenodo.org/badge/704758245.svg)](https://doi.org/10.5281/zenodo.15581076)
@@ -20,11 +20,11 @@ OMHModels is a Swift library for using [Open mHealth](https://www.openmhealth.or
 
 ## Installation
 
-The project can be added to your Xcode project or Swift Package using the [Swift Package Manager](https://github.com/apple/swift-package-manager).
+The project can be added to your Xcode project or Swift Package using the [Swift Package Manager](https://github.com/swiftlang/swift-package-manager).
 
 **Xcode:** For an Xcode project, follow the instructions on [adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app).
 
-**Swift Package:** You can follow the [Swift Package Manager documentation about defining dependencies](https://github.com/apple/swift-package-manager/blob/main/Documentation/Usage.md#defining-dependencies) to add this project as a dependency to your Swift Package.
+**Swift Package:** You can follow the [Swift Package Manager documentation about defining dependencies](https://github.com/swiftlang/swift-package-manager/blob/main/Sources/PackageManagerDocs/Documentation.docc/Dependencies/AddingDependencies.md) to add this project as a dependency to your Swift Package.
 
 ## Schemas
 
