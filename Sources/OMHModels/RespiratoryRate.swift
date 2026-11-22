@@ -7,7 +7,7 @@
 
 
 /// A Respiratory Rate measurement
-/// Generated from Open mHealth `omh:respiratory-rate:2.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_respiratory-rate)
+/// Generated from Open mHealth `omh:respiratory-rate:3.0` (https://w3id.org/openmhealth/schemas/omh/respiratory-rate-3.0.json)
 public struct RespiratoryRate: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {
         case respiratoryRate = "respiratory_rate"
@@ -17,7 +17,7 @@ public struct RespiratoryRate: Schema, Equatable {
     }
 
     /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "respiratory-rate", version: "2.0")
+    public static let schemaId = SchemaId(namespace: .omh, name: "respiratory-rate", version: "3.0")
     
     /// The heart rate measurement as a `UnitValue` containing a double value and unit
     public var respiratoryRate: RespiratoryRateUnitValue

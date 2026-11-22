@@ -72,6 +72,11 @@ struct Version020CompatibilityTests {
 
     /// The snake case JSON of 0.2.0 with the intentional encoding fixes applied.
     private static func expectedEncoding(_ fixture: String, _ json: JSONValue) -> JSONValue {
+        // blood-pressure 4.0 renamed `body_location` to `measurement_location`.
+        if fixture == "BloodPressure", case var .object(bloodPressure) = json, let location = bloodPressure.removeValue(forKey: "body_location") {
+            bloodPressure["measurement_location"] = location
+            return .object(bloodPressure)
+        }
         // 0.2.0 encoded HealthKit units as a nested `{"unit": "..."}` object instead of a string.
         guard fixture == "HealthKitQuantitySample",
               case var .object(sample) = json,

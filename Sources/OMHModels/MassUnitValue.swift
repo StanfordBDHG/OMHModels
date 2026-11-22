@@ -27,5 +27,5 @@ public enum MassUnit: String, UnitProtocol {
 }
 
 /// A type representing a value paired with a unit specific to mass measurements
-/// Generated from Open mHealth `omh:mass-unit-value:1.0` (https://w3id.org/openmhealth/schemas/omh/mass-unit-value-1.0.json)
+/// Generated from Open mHealth `omh:mass-unit-value:1.1` (https://w3id.org/openmhealth/schemas/omh/mass-unit-value-1.1.json)
 public typealias MassUnitValue = TypedUnitValue<MassUnit>

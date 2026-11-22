@@ -7,7 +7,7 @@
 
 
 /// A Body Height measurement
-/// Generated from Open mHealth `omh:body-height:1.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_body-height)
+/// Generated from Open mHealth `omh:body-height:2.0` (https://w3id.org/openmhealth/schemas/omh/body-height-2.0.json)
 public struct BodyHeight: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {
         case bodyHeight = "body_height"
@@ -16,7 +16,7 @@ public struct BodyHeight: Schema, Equatable {
     }
 
     /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "body-height", version: "1.0")
+    public static let schemaId = SchemaId(namespace: .omh, name: "body-height", version: "2.0")
 
     /// The body weight measurement as a `UnitValue` containing a double value and unit
     public var bodyHeight: LengthUnitValue

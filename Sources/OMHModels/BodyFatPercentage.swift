@@ -9,7 +9,7 @@ import Foundation
 
 
 /// Body fat percentage
-/// Generated from Open mHealth `omh:body-fat-percentage:1.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_body-fat-percentage)
+/// Generated from Open mHealth `omh:body-fat-percentage:2.0` (https://w3id.org/openmhealth/schemas/omh/body-fat-percentage-2.0.json)
 public struct BodyFatPercentage: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {
         case bodyFatPercentage = "body_fat_percentage"
@@ -18,13 +18,13 @@ public struct BodyFatPercentage: Schema, Equatable {
     }
 
     /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "body-fat-percentage", version: "1.0")
+    public static let schemaId = SchemaId(namespace: .omh, name: "body-fat-percentage", version: "2.0")
     
     /// Body fat percentage
     public var bodyFatPercentage: BodyFatPercentageUnitValue
     
     /// The time frame corresponding to this measurement
-    public var effectiveTimeFrame: TimeFrame?
+    public var effectiveTimeFrame: TimeFrame
     
     /// If the value in this data point is a descriptive statistic rather than a single measurement (e.g. minimum, average, median)
     /// this property should contain the specific type of descriptive statistic
@@ -33,7 +33,7 @@ public struct BodyFatPercentage: Schema, Equatable {
     
     public init(
         bodyFatPercentage: BodyFatPercentageUnitValue,
-        effectiveTimeFrame: TimeFrame? = nil,
+        effectiveTimeFrame: TimeFrame,
         descriptiveStatistic: DescriptiveStatistic? = nil
     ) {
         self.bodyFatPercentage = bodyFatPercentage
@@ -44,7 +44,7 @@ public struct BodyFatPercentage: Schema, Equatable {
     public init(from decoder: any Decoder) throws {
         let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         bodyFatPercentage = try container.decode(BodyFatPercentageUnitValue.self, forKey: .bodyFatPercentage)
-        effectiveTimeFrame = try container.decodeIfPresent(TimeFrame.self, forKey: .effectiveTimeFrame)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
         descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
     }
 }

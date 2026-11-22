@@ -42,7 +42,8 @@ let package = Package(
             ],
             resources: [
                 .copy("Resources/IEEE1752"),
-                .copy("Resources/Version020")
+                .copy("Resources/Version020"),
+                .copy("Resources/OpenMHealth")
             ],
             swiftSettings: [
                 .enableUpcomingFeature("ExistentialAny")
