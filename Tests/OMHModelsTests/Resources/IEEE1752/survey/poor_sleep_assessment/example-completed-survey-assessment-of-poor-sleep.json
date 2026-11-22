@@ -1,0 +1,66 @@
+{
+    "items": [
+        {
+            "question": {
+                "label": "1",
+                "text": "How often was your sleep disturbed last week? (Please select one below)"
+            },
+            "answers": [
+                {
+                    "code": 1,
+                    "value": "3 to 4 days"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:00Z",
+            "answered_date_time": "2019-11-05T07:24:05Z"
+        },
+        {
+            "question": {
+                "label": "2",
+                "text": "How many times did you get up from bed last night after first going to sleep?"
+            },
+            "answers": [
+                {
+                    "value": 2
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:10Z",
+            "answered_date_time": "2019-11-05T07:24:15Z"
+        },
+        {
+            "question": {
+                "label": "3",
+                "text": "I got adequate sleep last night."
+            },
+            "answers": [
+                {
+                    "code": 3,
+                    "value": "Disagree"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:20Z",
+            "answered_date_time": "2019-11-05T07:24:25Z"
+        },
+        {
+            "question": {
+                "label": "4",
+                "text": "How long ago did you start finding your sleep was inadequate or not refreshing?"
+            },
+            "answers": [
+                {
+                    "value": {
+                        "value": 3,
+                        "unit": "Mo"
+                    }
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:30Z",
+            "answered_date_time": "2019-11-05T07:24:35Z"
+        }
+    ],
+    "delivery_details": {
+        "start_date_time": "2019-11-05T07:24:00Z",
+        "end_date_time": "2019-11-05T07:24:45Z",
+        "end_status": "completed"
+    }
+}

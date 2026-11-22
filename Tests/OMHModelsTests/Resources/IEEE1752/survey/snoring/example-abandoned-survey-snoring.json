@@ -1,0 +1,45 @@
+{
+    "items": [
+        {
+            "question": {
+                "label": "1",
+                "text": "Have other people around you noticed that you snore? (Please select one below)"
+            },
+            "answers": [
+                {
+                    "code": 1,
+                    "value": "No"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:00Z",
+            "answered_date_time": "2019-11-05T07:24:05Z"
+        },
+        {
+            "question": {
+                "label": "2",
+                "text": "In the last 6 months, have you awakened at night gasping for breath? (Please select one below)"
+            },
+            "answers": [
+                {
+                    "code": 2,
+                    "value": "Occasionally"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:00Z",
+            "answered_date_time": "2019-11-05T07:24:05Z"
+        },
+        {
+            "question": {
+                "label": "3",
+                "text": "Do you suffer from high blood pressure? (Please select one below)"
+            },
+            "answers": [ ],
+            "asked_date_time": "2019-11-05T07:24:10Z"
+        }
+    ],
+    "delivery_details": {
+        "start_date_time": "2019-11-05T07:24:00Z",
+        "end_date_time": "2019-11-05T07:24:55Z",
+        "end_status": "abandoned"
+    }
+}

@@ -40,6 +40,10 @@ let package = Package(
             dependencies: [
                 .target(name: "OMHModels")
             ],
+            resources: [
+                .copy("Resources/IEEE1752"),
+                .copy("Resources/Version020")
+            ],
             swiftSettings: [
                 .enableUpcomingFeature("ExistentialAny")
             ],

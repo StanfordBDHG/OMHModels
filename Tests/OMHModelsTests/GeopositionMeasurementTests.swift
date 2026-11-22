@@ -15,7 +15,7 @@ import Testing
 // swiftlint:disable type_body_length attributes
 struct GeopositionMeasurementTests {
     var sampleDateTime: DateTime {
-        DateTime(date: Date())
+        DateTime(date: Date(timeIntervalSince1970: 1_700_000_000))
     }
     
     var sampleTimeFrame: TimeFrame {

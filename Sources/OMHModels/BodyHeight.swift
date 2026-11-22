@@ -8,7 +8,13 @@
 
 /// A Body Height measurement
 /// Generated from Open mHealth `omh:body-height:1.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_body-height)
-public struct BodyHeight: Schema {
+public struct BodyHeight: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case bodyHeight = "body_height"
+        case effectiveTimeFrame = "effective_time_frame"
+        case descriptiveStatistic = "descriptive_statistic"
+    }
+
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "body-height", version: "1.0")
 
@@ -31,5 +37,12 @@ public struct BodyHeight: Schema {
         self.bodyHeight = bodyHeight
         self.effectiveTimeFrame = effectiveTimeFrame
         self.descriptiveStatistic = descriptiveStatistic
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        bodyHeight = try container.decode(LengthUnitValue.self, forKey: .bodyHeight)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
     }
 }

@@ -14,6 +14,7 @@ import Testing
 @Suite("Time Interval Tests")
 struct TimeIntervalTests {
     @Test("Time Interval with Start DateTime and Duration")
+    @available(*, deprecated, message: "Tests the deprecated date and part of day time interval")
     func testTimeIntervalwithStartDateTimeAndDuration() {
         let startDateTime = DateTime(date: .now)
         let duration = DurationUnitValue(unit: .min, value: 60)
@@ -28,6 +29,7 @@ struct TimeIntervalTests {
     }
     
     @Test("Time Interval with End DateTime and Duration")
+    @available(*, deprecated, message: "Tests the deprecated date and part of day time interval")
     func testTimeIntervalWithEndDateTimeAndDuration() {
         let endDateTime = DateTime(date: .now)
         let duration = DurationUnitValue(unit: .min, value: 60)
@@ -42,6 +44,7 @@ struct TimeIntervalTests {
     }
     
     @Test("Init with Start DateTime and End DateTime")
+    @available(*, deprecated, message: "Tests the deprecated date and part of day time interval")
     func testInitWithStartDateTimeAndEndDateTime() {
         let startDateTime = DateTime(date: Date(timeIntervalSince1970: 0)) // Substitute with your DateTime initialization
         let endDateTime = DateTime(date: Date(timeIntervalSince1970: 10)) // Substitute with your DateTime initialization
@@ -56,6 +59,7 @@ struct TimeIntervalTests {
     }
     
     @Test("Init with Date and Part of Day")
+    @available(*, deprecated, message: "Tests the deprecated date and part of day time interval")
     func testInitWithDateAndPartOfDay() {
         let date = Date()
         let partOfDay = PartOfDay.morning

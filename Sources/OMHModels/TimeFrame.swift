@@ -11,7 +11,7 @@ import Foundation
 
 /// Enables a particular time frame to be described as either a point in time or a time interval.
 /// Generated from IEEE 1752.1 `time-frame-1.0` (https://w3id.org/ieee/ieee-1752-schema/time-frame.json)
-public struct TimeFrame: Schema, Equatable {
+public struct TimeFrame: Schema, Hashable {
     enum CodingKeys: String, CodingKey {
         case dateTime = "date_time"
         case timeInterval = "time_interval"
@@ -36,18 +36,14 @@ public struct TimeFrame: Schema, Equatable {
     }
 
     public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         dateTime = try container.decodeIfPresent(DateTime.self, forKey: .dateTime)
         timeInterval = try container.decodeIfPresent(TimeInterval.self, forKey: .timeInterval)
         guard dateTime != nil || timeInterval != nil else {
             throw DecodingError.dataCorrupted(
-                .init(codingPath: decoder.codingPath, debugDescription: "Invalid time frame data")
+                .init(codingPath: decoder.codingPath, debugDescription: "A time frame requires a date_time or a time_interval")
             )
         }
-    }
-
-    public static func == (lhs: TimeFrame, rhs: TimeFrame) -> Bool {
-        lhs.dateTime == rhs.dateTime && lhs.timeInterval == rhs.timeInterval
     }
 
     public func encode(to encoder: any Encoder) throws {

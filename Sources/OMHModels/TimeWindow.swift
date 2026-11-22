@@ -8,7 +8,7 @@
 
 /// Time window in which the event occurs or should occur: e.g., in twice a day every other day --> 2 times in 1 day every 2 days, time window is 1 day
 /// Defined within the IEEE 1752 `frequency-unit-value-1.0` schema (https://w3id.org/ieee/ieee-1752-schema/frequency-unit-value.json)
-public enum TimeWindow: Codable, Equatable, Sendable {
+public enum TimeWindow: Codable, Hashable, Sendable {
     case duration(DurationUnitValue)
     case durationRange(DurationUnitValueRange)
     
@@ -21,17 +21,6 @@ public enum TimeWindow: Codable, Equatable, Sendable {
             self = .durationRange(durationRange)
         } else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Mismatched Types")
-        }
-    }
-    
-    public static func == (lhs: TimeWindow, rhs: TimeWindow) -> Bool {
-        switch (lhs, rhs) {
-        case let (.duration(lhsDuration), .duration(rhsDuration)):
-            return lhsDuration == rhsDuration
-        case let (.durationRange(lhsRange), .durationRange(rhsRange)):
-            return lhsRange == rhsRange
-        default:
-            return false
         }
     }
     

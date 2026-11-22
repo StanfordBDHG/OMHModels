@@ -1,0 +1,23 @@
+#
+# This source file is part of the OMHModels open source project
+#
+# SPDX-FileCopyrightText: 2026 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+version = 1
+
+# Sample data from the IEEE 1752 open source repository (https://opensource.ieee.org/omh/1752/-/tree/main/sample_data)
+[[annotations]]
+path = "Tests/OMHModelsTests/Resources/IEEE1752/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2021 IEEE P1752 Authors"
+SPDX-License-Identifier = "Apache-2.0"
+
+# JSON encoded by OMHModels 0.2.0, used to test compatibility with data stored by earlier versions
+[[annotations]]
+path = "Tests/OMHModelsTests/Resources/Version020/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Stanford University and the project authors (see CONTRIBUTORS.md)"
+SPDX-License-Identifier = "MIT"

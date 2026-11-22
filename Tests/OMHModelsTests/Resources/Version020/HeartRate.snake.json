@@ -1,0 +1,15 @@
+{
+  "descriptive_statistic" : "average",
+  "effective_time_frame" : {
+    "time_interval" : {
+      "end_date_time" : "2023-11-14T23:13:20Z",
+      "start_date_time" : "2023-11-14T22:13:20Z"
+    }
+  },
+  "heart_rate" : {
+    "unit" : "beats/min",
+    "value" : 60
+  },
+  "temporal_relationship_to_physical_activity" : "at rest",
+  "temporal_relationship_to_sleep" : "during sleep"
+}

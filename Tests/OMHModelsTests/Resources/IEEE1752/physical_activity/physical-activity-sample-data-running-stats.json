@@ -1,0 +1,16 @@
+{
+    "description": "the average weekly running distance between August 24 and September 20, 2019 was 16.2 km",
+    "activity_name": "Running",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-08-24T00:00:00Z",
+            "end_date_time": "2019-09-20T23:59:00Z"
+        }
+    },
+    "distance": {
+        "value": 16.2,
+        "unit": "km"
+    },
+    "descriptive_statistic": "average",
+    "descriptive_statistic_denominator": "wk"
+}

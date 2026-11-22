@@ -7,10 +7,18 @@
 
 
 /// A date value that can be full or partial
-public enum SurveyDateValue: Codable, Sendable {
+public enum SurveyDateValue: Codable, Hashable, Sendable {
     case fullDate(String)    // YYYY-MM-DD
     case yearMonth(String)   // YYYY-MM
     case yearOnly(String)    // YYYY
+    
+    /// The string representation of the date, e.g., `2024-05-31`, `2024-05`, or `2024`.
+    public var stringValue: String {
+        switch self {
+        case .fullDate(let value), .yearMonth(let value), .yearOnly(let value):
+            value
+        }
+    }
     
     public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -29,19 +37,13 @@ public enum SurveyDateValue: Codable, Sendable {
     
     public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
-        
-        switch self {
-        case .fullDate(let value),
-             .yearMonth(let value),
-             .yearOnly(let value):
-            try container.encode(value)
-        }
+        try container.encode(stringValue)
     }
 }
 
 /// A date value answer to a survey question
 /// Generated from IEEE 1752.1 `survey-date-answer-1.0` (https://w3id.org/ieee/ieee-1752-schema/survey-date-answer.json)
-public struct SurveyDateAnswer: Schema {
+public struct SurveyDateAnswer: Schema, Hashable {
     /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "survey-date-answer", version: "1.0")
     

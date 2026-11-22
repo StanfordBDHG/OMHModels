@@ -1,0 +1,78 @@
+{
+    "items": [
+        {
+            "question": {
+                "label": "1",
+                "text": "Have you ever taken an over-the-counter medicine to help you sleep? (Please select one below)"
+            },
+            "answers": [
+                {
+                    "code": 0,
+                    "value": "Yes"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:00Z",
+            "answered_date_time": "2019-11-05T07:24:05Z"
+        },
+        {
+            "question": {
+                "label": "2",
+                "text": "Do you keep track of your sleep patterns? (Please select one below)"
+            },
+            "answers": [
+                {
+                    "code": 0,
+                    "value": "Yes"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:10Z",
+            "answered_date_time": "2019-11-05T07:24:15Z"
+        },
+        {
+            "question": {
+                "label": "3",
+                "text": "Do you work night shifts?"
+            },
+            "answers": [
+                {
+                    "code": 2,
+                    "value": "Occasionally"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:20Z",
+            "answered_date_time": "2019-11-05T07:24:25Z"
+        },
+        {
+            "question": {
+                "label": "3.a",
+                "text": "When did you start working nights? (Answer is a date that can be partial)"
+            },
+            "answers": [
+                {
+                    "value": "2018-10-01"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:30Z",
+            "answered_date_time": "2019-11-05T07:24:35Z"
+        },
+        {
+            "question": {
+                "label": "4",
+                "text": "Do you use electronic gadgets such as e-book readers, mobile phones, video game machines etc. when having difficulty in falling sleep? (Please select one below)"
+            },
+            "answers": [
+                {
+                    "code": 3,
+                    "value": "Never"
+                }
+            ],
+            "asked_date_time": "2019-11-05T07:24:00Z",
+            "answered_date_time": "2019-11-05T07:24:45Z"
+        }
+    ],
+    "delivery_details": {
+        "start_date_time": "2019-11-05T07:24:00Z",
+        "end_date_time": "2019-11-05T07:24:55Z",
+        "end_status": "completed"
+    }
+}

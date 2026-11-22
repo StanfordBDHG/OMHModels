@@ -7,7 +7,13 @@
 
 
 /// The operational details of delivering a survey
-public struct SurveyDeliveryDetails: Codable, Sendable {
+public struct SurveyDeliveryDetails: Codable, Hashable, Sendable {
+    private enum CodingKeys: String, CodingKey {
+        case startDateTime = "start_date_time"
+        case endDateTime = "end_date_time"
+        case endStatus = "end_status"
+    }
+
     /// The date time at which this survey was started
     public var startDateTime: DateTime?
     
@@ -23,6 +29,13 @@ public struct SurveyDeliveryDetails: Codable, Sendable {
         self.endDateTime = endDateTime
         self.endStatus = endStatus
     }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        startDateTime = try container.decodeIfPresent(DateTime.self, forKey: .startDateTime)
+        endDateTime = try container.decodeIfPresent(DateTime.self, forKey: .endDateTime)
+        endStatus = try container.decodeIfPresent(SurveyEndStatus.self, forKey: .endStatus)
+    }
 }
 
 /// The way a survey was ended by the participant
@@ -36,16 +49,16 @@ public enum SurveyEndStatus: String, Codable, Sendable {
 }
 
 /// A score calculated for a survey
-public enum SurveyScore: Codable, Sendable {
+public enum SurveyScore: Codable, Hashable, Sendable {
     case number(Double)
-    case object([String: String])
+    case object([String: JSONValue])
     
     public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         
         if let numberValue = try? container.decode(Double.self) {
             self = .number(numberValue)
-        } else if let dictValue = try? container.decode([String: String].self) {
+        } else if let dictValue = try? container.decode([String: JSONValue].self) {
             self = .object(dictValue)
         } else {
             throw DecodingError.typeMismatch(
@@ -69,7 +82,13 @@ public enum SurveyScore: Codable, Sendable {
 
 /// A survey as an array of at least one survey item (the combination of a question and the list of answers)
 /// Generated from IEEE 1752.1 `survey-1.0` (https://w3id.org/ieee/ieee-1752-schema/survey.json)
-public struct Survey: Schema {
+public struct Survey: Schema, Hashable {
+    private enum CodingKeys: String, CodingKey {
+        case items
+        case deliveryDetails = "delivery_details"
+        case score
+    }
+
     /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "survey", version: "1.0")
     
@@ -87,5 +106,12 @@ public struct Survey: Schema {
         self.items = items
         self.deliveryDetails = deliveryDetails
         self.score = score
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        items = try container.decode([SurveyItem].self, forKey: .items)
+        deliveryDetails = try container.decode(SurveyDeliveryDetails.self, forKey: .deliveryDetails)
+        score = try container.decodeIfPresent(SurveyScore.self, forKey: .score)
     }
 }

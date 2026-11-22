@@ -1,0 +1,11 @@
+{
+  "descriptive_statistic" : "average",
+  "effective_time_frame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  },
+  "respiratory_rate" : {
+    "unit" : "breaths/min",
+    "value" : 14
+  },
+  "temporal_relationship_to_physical_activity" : "at rest"
+}

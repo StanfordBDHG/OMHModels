@@ -9,7 +9,15 @@ public import Foundation
 
 
 /// Metadata representing the source of a data point
-public struct AcquisitionProvenance: Sendable, Codable {
+@available(*, deprecated, message: "AcquisitionProvenance isn't part of IEEE 1752 and can't be created outside of OMHModels")
+public struct AcquisitionProvenance: Sendable, Codable, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case sourceName = "source_name"
+        case sourceCreationDateTime = "source_creation_date_time"
+        case sourceLastModificationDateTime = "source_last_modification_date_time"
+        case modality
+    }
+
     /// The name of the source of the data.
     public var sourceName: String
 
@@ -31,5 +39,13 @@ public struct AcquisitionProvenance: Sendable, Codable {
         self.sourceName = sourceName
         self.sourceCreationDateTime = sourceCreationDateTime
         self.modality = modality
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        sourceName = try container.decode(String.self, forKey: .sourceName)
+        sourceCreationDateTime = try container.decodeIfPresent(Date.self, forKey: .sourceCreationDateTime)
+        sourceLastModificationDateTime = try container.decodeIfPresent(Date.self, forKey: .sourceLastModificationDateTime)
+        modality = try container.decodeIfPresent(Modality.self, forKey: .modality)
     }
 }

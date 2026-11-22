@@ -1,0 +1,15 @@
+{
+  "descriptiveStatistic" : "average",
+  "descriptiveStatisticDenominator" : "wk",
+  "effectiveTimeFrame" : {
+    "time_interval" : {
+      "endDateTime" : "2023-11-14T23:13:20Z",
+      "startDateTime" : "2023-11-14T22:13:20Z"
+    }
+  },
+  "isMainSleep" : true,
+  "totalSleepTime" : {
+    "unit" : "h",
+    "value" : 7
+  }
+}

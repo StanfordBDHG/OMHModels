@@ -10,7 +10,8 @@
 /// Generated from IEEE 1752.1 `unit-value-1.0` (https://w3id.org/ieee/ieee-1752-schema/unit-value.json)
 public struct TypedUnitValue<T: UnitProtocol>: Codable, Sendable {
     private enum CodingKeys: String, CodingKey {
-        case unit, value
+        case unit
+        case value
     }
     
     /// The unit of measure of the element. Allowed values are drawn from the Common synonyms (non-UCUM) column of [subset of] UCUM, SI and English units.
@@ -31,7 +32,7 @@ public struct TypedUnitValue<T: UnitProtocol>: Codable, Sendable {
     }
     
     public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         unit = try container.decode(T.self, forKey: .unit)
         value = try container.decode(Double.self, forKey: .value)
     }
@@ -48,3 +49,5 @@ extension TypedUnitValue: Equatable where T: Equatable {
         lhs.unit == rhs.unit && lhs.value == rhs.value
     }
 }
+
+extension TypedUnitValue: Hashable where T: Hashable {}

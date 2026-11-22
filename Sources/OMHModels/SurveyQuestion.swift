@@ -8,7 +8,7 @@
 
 /// A survey question
 /// Generated from IEEE 1752.1 `survey-question-1.0` (https://w3id.org/ieee/ieee-1752-schema/survey-question.json)
-public struct SurveyQuestion: Schema {
+public struct SurveyQuestion: Schema, Hashable {
     /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "survey-question", version: "1.0")
     

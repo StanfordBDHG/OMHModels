@@ -1,0 +1,10 @@
+{
+  "body_temperature" : {
+    "unit" : "C",
+    "value" : 37
+  },
+  "descriptive_statistic" : "average",
+  "effective_time_frame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  }
+}

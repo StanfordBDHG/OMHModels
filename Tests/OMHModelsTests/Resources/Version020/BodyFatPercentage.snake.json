@@ -1,0 +1,10 @@
+{
+  "body_fat_percentage" : {
+    "unit" : "%",
+    "value" : 18
+  },
+  "descriptive_statistic" : "median",
+  "effective_time_frame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  }
+}

@@ -10,7 +10,9 @@
 /// Generated from IEEE 1752.1 `unit-value-range-1.0` (https://w3id.org/ieee/ieee-1752-schema/unit-value-range.json)
 public struct TypedUnitValueRange<T: UnitProtocol>: Codable, Sendable {
     private enum CodingKeys: String, CodingKey {
-        case unit, lowValue, highValue
+        case unit
+        case lowValue = "low_value"
+        case highValue = "high_value"
     }
     
     /// The unit of measure of the element. Allowed values are drawn from the Common synonyms (non-UCUM) column of [subset of] UCUM, SI and English units.
@@ -36,7 +38,7 @@ public struct TypedUnitValueRange<T: UnitProtocol>: Codable, Sendable {
     }
     
     public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         unit = try container.decode(T.self, forKey: .unit)
         lowValue = try container.decode(Double.self, forKey: .lowValue)
         highValue = try container.decode(Double.self, forKey: .highValue)
@@ -57,3 +59,5 @@ extension TypedUnitValueRange: Equatable where T: Equatable {
         lhs.highValue == rhs.highValue
     }
 }
+
+extension TypedUnitValueRange: Hashable where T: Hashable {}

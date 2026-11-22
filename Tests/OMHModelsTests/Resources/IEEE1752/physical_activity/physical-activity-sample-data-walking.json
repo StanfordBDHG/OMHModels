@@ -1,0 +1,46 @@
+{
+    "description": "the walking episode that occurred on February 6, 2019 between 8:20:01 and 9:07:33 had a net duration of 40.67 minutes, corresponded to 30 minutes of moderate intensity, 6 minutes of vigorous intensity and 4.67 minutes of light intensity activity. The distance covered was 4.91 km, the number of steps 5530",
+    "activity_name": "Walking",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-06T08:20:01Z",
+            "end_date_time": "2019-02-06T09:07:33Z"
+        }
+    },
+    "distance": {
+        "value": 4.91,
+        "unit": "km"
+    },
+    "duration": {
+        "value": 40.67,
+        "unit": "min"
+    },
+    "base_movement_quantity": {
+        "value": 5530,
+        "unit": "steps"
+    },
+    "average_cadence": {
+        "value": 136,
+        "unit": "steps/min"
+    },
+    "average_speed": {
+        "value": 6.5,
+        "unit": "km/h"
+    },
+    "kcal_burned": {
+        "value": 220,
+        "unit": "kcal"
+    },
+    "duration_moderate_activity": {
+        "value": 30,
+        "unit": "min"
+    },
+    "duration_vigorous_activity": {
+        "value": 6,
+        "unit": "min"
+    },
+    "duration_light_activity": {
+        "value": 4.67,
+        "unit": "min"
+    }
+}
