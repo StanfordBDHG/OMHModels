@@ -1,0 +1,12 @@
+{
+    "apnea_hypopnea_index": {
+        "value": 6,
+        "unit": "events/h"
+    },
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-19T22:00:00Z",
+            "end_date_time": "2019-02-20T06:50:00Z"
+        }
+    }
+}

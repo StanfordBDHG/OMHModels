@@ -1,0 +1,45 @@
+{
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2016-02-05T21:35:00Z",
+            "duration": {
+                "value": 520,
+                "unit": "min"
+            }
+        }
+    },
+    "latency_to_sleep_onset": {
+        "value": 17.5,
+        "unit": "min"
+    },
+    "latency_to_arising": {
+        "value": 5.2,
+        "unit": "min"
+    },
+    "total_sleep_time": {
+        "value": 487,
+        "unit": "min"
+    },
+    "light_sleep_duration": {
+        "value": 312,
+        "unit": "min"
+    },
+    "deep_sleep_duration": {
+        "value": 37,
+        "unit": "min"
+    },
+    "rem_sleep_duration": {
+        "value": 138,
+        "unit": "min"
+    },
+    "number_of_awakenings": 1,
+    "wake_after_sleep_onset": {
+        "value": 10.3,
+        "unit": "min"
+    },
+    "is_main_sleep": true,
+    "sleep_efficiency_percentage": {
+        "value": 93.7,
+        "unit": "%"
+    }
+}

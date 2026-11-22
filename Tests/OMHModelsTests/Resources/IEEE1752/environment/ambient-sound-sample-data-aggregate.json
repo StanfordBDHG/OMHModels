@@ -1,0 +1,13 @@
+{
+    "ambient_sound": {
+        "value": 70,
+        "unit": "dBA"
+    },
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-05T06:00:00Z",
+            "end_date_time": "2019-02-06T06:00:00Z"
+        }
+    },
+    "descriptive_statistic": "average"
+}

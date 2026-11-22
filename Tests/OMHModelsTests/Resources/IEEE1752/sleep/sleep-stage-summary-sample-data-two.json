@@ -1,0 +1,80 @@
+{
+    "sleep_stage_summary": {
+        "total_sleep_time": {
+            "value": 380,
+            "unit": "min"
+        },
+        "number_of_awakenings": 3
+    },
+    "sleep_stage_episodes": [
+        {
+            "sleep_stage_state": "Unknown_sleep",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-19T22:30:00Z",
+                    "end_date_time": "2019-02-19T23:50:00Z"
+                }
+            }
+        },
+        {
+            "sleep_stage_state": "Awake",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-19T23:50:00Z",
+                    "end_date_time": "2019-02-20T00:15:00Z"
+                }
+            }
+        },
+        {
+            "sleep_stage_state": "Unknown_sleep",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-20T00:15:00Z",
+                    "end_date_time": "2019-02-20T02:15:00Z"
+                }
+            }
+        },
+        {
+            "sleep_stage_state": "Awake",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-20T02:15:00Z",
+                    "end_date_time": "2019-02-20T02:30:00Z"
+                }
+            }
+        },
+        {
+            "sleep_stage_state": "Unknown_sleep",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-20T02:30:00Z",
+                    "end_date_time": "2019-02-20T04:00:00Z"
+                }
+            }
+        },
+        {
+            "sleep_stage_state": "Awake",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-20T04:00:00Z",
+                    "end_date_time": "2019-02-20T04:10:00Z"
+                }
+            }
+        },
+        {
+            "sleep_stage_state": "Unknown_sleep",
+            "sleep_stage_time_frame": {
+                "time_interval": {
+                    "start_date_time": "2019-02-20T04:10:00Z",
+                    "end_date_time": "2019-02-20T04:50:00Z"
+                }
+            }
+        }
+    ],
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-19T22:30:00Z",
+            "end_date_time": "2019-02-20T04:50:00Z"
+        }
+    }
+}

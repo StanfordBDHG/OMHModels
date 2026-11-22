@@ -1,0 +1,34 @@
+{
+    "header": {
+        "uuid": "123e4567-e89b-12d3-a456-426655440000",
+        "source_creation_date_time": "2013-02-05T07:25:00+01:00",
+        "schema_id": {
+            "namespace": "ieee",
+            "name": "ambient-temperature",
+            "version": "1.0"
+        },
+        "modality": "sensed",
+        "acquisition_rate": {
+            "value": 0.05,
+            "unit": "Hz"
+        },
+        "external_datasheets": [
+            {
+                "datasheet_reference": "iri-of-some-ambient-thermometer"
+            },
+            {
+                "datasheet_type": "study",
+                "datasheet_reference": "iri-of-some-study-protocol"
+            }
+        ]
+    },
+    "body": {
+        "ambient_temperature": {
+            "value": 19,
+            "unit": "C"
+        },
+        "effective_time_frame": {
+            "date_time": "2013-02-05T07:25:00+01:00"
+        }
+    }
+}

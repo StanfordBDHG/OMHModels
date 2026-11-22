@@ -17,6 +17,16 @@ import Testing
 struct IEEE1752SampleDataTests {
     private static let sampleDataDirectory = Bundle.module.url(forResource: "IEEE1752", withExtension: nil)
 
+    /// Properties in the sample data that aren't defined by the schemas and therefore aren't decoded:
+    /// the sample data documents each example in a `description`, and some sleep stage summary samples use names
+    /// that differ from the `sleep-stage-summary` schema (`awake_duration`, `awake_percentage`, `sleep_efficiency_percentage`).
+    private static let undefinedProperties: Set<String> = [
+        "description",
+        "awake_sleep_duration",
+        "awake_sleep_percentage",
+        "total_sleep_efficiency_percentage"
+    ]
+
     static let sampleFiles: [String] = {
         guard let sampleDataDirectory,
               let enumerator = FileManager.default.enumerator(at: sampleDataDirectory, includingPropertiesForKeys: nil) else {
@@ -37,6 +47,24 @@ struct IEEE1752SampleDataTests {
             ("header-", roundTrip(Header.self)),
             ("schema-id-", roundTrip(SchemaId.self)),
             ("data-point-sample-data-phys-activity", roundTrip(SchemaDataPoint<PhysicalActivity>.self)),
+            ("data-point-sample-data-ambient-temp", roundTrip(SchemaDataPoint<AmbientTemperature>.self)),
+            ("data-series-sample-series-ambient-temp", roundTrip(SchemaDataSeries<AmbientTemperature>.self)),
+            ("ambient-light-", roundTrip(AmbientLight.self)),
+            ("ambient-sound-", roundTrip(AmbientSound.self)),
+            ("ambient-temperature-", roundTrip(AmbientTemperature.self)),
+            ("apnea-hypopnea-index-", roundTrip(ApneaHypopneaIndex.self)),
+            ("arousal-index-", roundTrip(ArousalIndex.self)),
+            ("deep-sleep-", roundTrip(DeepSleep.self)),
+            ("light-sleep-", roundTrip(LightSleep.self)),
+            ("sleep-episode-", roundTrip(SleepEpisode.self)),
+            ("sleep-onset-latency-", roundTrip(SleepOnsetLatency.self)),
+            ("sleep-stage-summary-", roundTrip(SleepStageSummary.self)),
+            ("snore-index-", roundTrip(SnoreIndex.self)),
+            ("time-in-bed-", roundTrip(TimeInBed.self)),
+            ("wake-after-sleep-onset-", roundTrip(WakeAfterSleepOnset.self)),
+            ("illuminance-unit-value-", roundTrip(IlluminanceUnitValue.self)),
+            ("percent-unit-value-", roundTrip(PercentUnitValue.self)),
+            ("sound-unit-value-", roundTrip(SoundUnitValue.self)),
             ("physical-activity-", roundTrip(PhysicalActivity.self)),
             ("example-", roundTrip(Survey.self)),
             ("body-posture-", roundTrip(BodyPosture.self)),
@@ -64,17 +92,20 @@ struct IEEE1752SampleDataTests {
             let decoded = try SchemaCoders.decoder.decode(T.self, from: data)
             let encoded = try SchemaCoders.encoder.encode(decoded)
             #expect(try SchemaCoders.decoder.decode(T.self, from: encoded) == decoded)
+            // Decoders that still use the key coding strategy recommended by earlier versions get the same result.
+            let strategyDecoder = JSONDecoder()
+            strategyDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            #expect(try strategyDecoder.decode(T.self, from: data) == decoded)
             return encoded
         }
     }
 
-    /// The sample data documents each example in a `description` property that isn't part of the schemas.
-    private static func removingDescriptions(_ value: JSONValue) -> JSONValue {
+    private static func removingUndefinedProperties(_ value: JSONValue) -> JSONValue {
         switch value {
         case .object(let object):
-            .object(object.filter { $0.key != "description" }.mapValues(removingDescriptions))
+            .object(object.filter { !undefinedProperties.contains($0.key) }.mapValues(removingUndefinedProperties))
         case .array(let array):
-            .array(array.map(removingDescriptions))
+            .array(array.map(removingUndefinedProperties))
         default:
             value
         }
@@ -93,33 +124,7 @@ struct IEEE1752SampleDataTests {
         let roundTrip = try #require(Self.roundTrip(file: file), "No schema registered for \(file)")
         let reencoded = try roundTrip(data)
 
-        let original = Self.removingDescriptions(try JSONDecoder().decode(JSONValue.self, from: data))
+        let original = Self.removingUndefinedProperties(try JSONDecoder().decode(JSONValue.self, from: data))
         #expect(try JSONDecoder().decode(JSONValue.self, from: reencoded) == original)
-    }
-
-    /// Version 0.2.0 required key coding strategies, and these schemas decoded with `convertFromSnakeCase`.
-    /// Decoders that still set the strategy must keep decoding them.
-    @Test("Sample data decodes with the convertFromSnakeCase strategy", arguments: sampleFiles.filter { file in
-        ["survey/", "utility/time-interval-", "utility/duration-unit-value-range-", "utility/unit-value-range-", "metadata/header-"]
-            .contains { file.hasPrefix($0) }
-    })
-    func sampleDataWithKeyStrategy(file: String) throws {
-        let directory = try #require(Self.sampleDataDirectory)
-        let data = try Data(contentsOf: directory.appending(path: file))
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        let plainDecoder = JSONDecoder()
-
-        if file.hasPrefix("survey/") {
-            #expect(try decoder.decode(Survey.self, from: data) == plainDecoder.decode(Survey.self, from: data))
-        } else if file.hasPrefix("utility/time-interval-") {
-            let timeInterval = try decoder.decode(OMHModels.TimeInterval.self, from: data)
-            #expect(try timeInterval == plainDecoder.decode(OMHModels.TimeInterval.self, from: data))
-        } else if file.hasPrefix("metadata/header-") {
-            #expect(try decoder.decode(Header.self, from: data) == plainDecoder.decode(Header.self, from: data))
-        } else {
-            let range = try decoder.decode(TypedUnitValueRange<HealthKitUnit>.self, from: data)
-            #expect(try range == plainDecoder.decode(TypedUnitValueRange<HealthKitUnit>.self, from: data))
-        }
     }
 }
