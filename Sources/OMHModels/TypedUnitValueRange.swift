@@ -35,14 +35,14 @@ public struct TypedUnitValueRange<T: UnitProtocol>: Codable, Sendable {
         self.highValue = Double(highValue)
     }
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         unit = try container.decode(T.self, forKey: .unit)
         lowValue = try container.decode(Double.self, forKey: .lowValue)
         highValue = try container.decode(Double.self, forKey: .highValue)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(unit, forKey: .unit)
         try container.encode(lowValue, forKey: .lowValue)

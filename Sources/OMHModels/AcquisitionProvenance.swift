@@ -5,7 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
+public import Foundation
 
 
 /// Metadata representing the source of a data point

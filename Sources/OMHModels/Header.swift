@@ -5,7 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Foundation
+public import Foundation
 
 
 /// This schema represents the header of a data point or data series.

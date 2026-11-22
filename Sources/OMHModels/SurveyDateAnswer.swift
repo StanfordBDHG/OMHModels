@@ -12,7 +12,7 @@ public enum SurveyDateValue: Codable, Sendable {
     case yearMonth(String)   // YYYY-MM
     case yearOnly(String)    // YYYY
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let stringValue = try container.decode(String.self)
         
@@ -27,7 +27,7 @@ public enum SurveyDateValue: Codable, Sendable {
         }
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         
         switch self {
