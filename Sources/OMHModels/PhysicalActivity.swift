@@ -8,28 +8,53 @@
 /// A unit value that represents the number of repetitions of the activity base movement and the associated unit
 public typealias BaseMovementQuantityUnitValue = TypedUnitValue<BaseMovementQuantityUnit>
 
-/// Units for representing base movement
-public enum BaseMovementQuantityUnit: String, UnitProtocol {
-    case steps
-    case laps
-    case skips
-    case movements
-    case strokes
+/// Units for representing base movement. Other units than the ones listed are allowed.
+public struct BaseMovementQuantityUnit: RawRepresentable, UnitProtocol, Hashable, ExpressibleByStringLiteral {
+    public static let steps: BaseMovementQuantityUnit = "steps"
+    public static let laps: BaseMovementQuantityUnit = "laps"
+    public static let skips: BaseMovementQuantityUnit = "skips"
+    public static let movements: BaseMovementQuantityUnit = "movements"
+    public static let strokes: BaseMovementQuantityUnit = "strokes"
+
+    public let rawValue: String
+
+
+    /// Creates a value from its raw value. Never fails; failable for source compatibility with the previous `enum`.
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public init(stringLiteral value: String) {
+        self.rawValue = value
+    }
 }
 
 /// A unit value that represents the average rate at which the activity was performed and the associated unit
 public typealias AverageCadenceUnitValue = TypedUnitValue<AverageCadenceUnit>
 
-/// Units for representing the average rate at which activity was performed
-public enum AverageCadenceUnit: String, UnitProtocol {
-    case stepsPerMin = "steps/min"
-    case strokesPerMin = "strokes/min"
-    case skipsPerMin = "skips/min"
-    case lapsPerMin = "laps/min"
-    case movementsPerMin = "movements/min"
-    case strokesPerLap = "strokes/lap"
+/// Units for representing the average rate at which activity was performed. Other units than the ones listed are allowed.
+public struct AverageCadenceUnit: RawRepresentable, UnitProtocol, Hashable, ExpressibleByStringLiteral {
+    public static let stepsPerMin: AverageCadenceUnit = "steps/min"
+    public static let strokesPerMin: AverageCadenceUnit = "strokes/min"
+    public static let skipsPerMin: AverageCadenceUnit = "skips/min"
+    public static let lapsPerMin: AverageCadenceUnit = "laps/min"
+    public static let movementsPerMin: AverageCadenceUnit = "movements/min"
+    public static let strokesPerLap: AverageCadenceUnit = "strokes/lap"
+
+    public let rawValue: String
+
+
+    /// Creates a value from its raw value. Never fails; failable for source compatibility with the previous `enum`.
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public init(stringLiteral value: String) {
+        self.rawValue = value
+    }
 }
 
+/// Self-reported intensity of a physical activity
 public enum ReportedActivityIntensity: String, Codable, Sendable {
     case light
     case moderate
