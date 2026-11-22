@@ -8,12 +8,11 @@
 import Foundation
 
 
-/// The unit of measure of the element. Basic unit is radian (rad). Allowed values are drawn from the SI Plane Angle Units.
+/// The unit of measure of a plane angle. Open mHealth only allows degrees.
 public enum PlaneAngleUnit: String, UnitProtocol, Sendable {
-    case rad
     case deg
 }
 
 /// A type representing a value paired with a unit specific to plane angle measurements
-/// Generated from IEEE 1752.1 `plane-angle-unit-value-1.0` 
+/// Generated from Open mHealth `omh:plane-angle-unit-value:1.1` (https://w3id.org/openmhealth/schemas/omh/plane-angle-unit-value-1.1.json)
 public typealias PlaneAngleUnitValue = TypedUnitValue<PlaneAngleUnit>

@@ -11,6 +11,7 @@
 public struct TotalSleepTime: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {
         case totalSleepTime = "total_sleep_time"
+        case sleepEvents = "sleep_events"
         case effectiveTimeFrame = "effective_time_frame"
         case isMainSleep = "is_main_sleep"
         case descriptiveStatistic = "descriptive_statistic"
@@ -22,6 +23,9 @@ public struct TotalSleepTime: Schema, Equatable {
     
     /// The total amount of time spent asleep
     public var totalSleepTime: DurationUnitValue
+    
+    /// The time intervals during which the person was asleep. Omitted from the JSON representation when empty.
+    public var sleepEvents: [TimeInterval]
     
     /// The time frame corresponding to this measurement
     public var effectiveTimeFrame: TimeFrame
@@ -40,11 +44,13 @@ public struct TotalSleepTime: Schema, Equatable {
     public init(
         totalSleepTime: DurationUnitValue,
         effectiveTimeFrame: TimeFrame,
+        sleepEvents: [TimeInterval] = [],
         isMainSleep: Bool? = nil, // swiftlint:disable:this discouraged_optional_boolean
         descriptiveStatistic: DescriptiveStatistic? = nil,
         descriptiveStatisticDenominator: DescriptiveStatisticDenominator? = nil
     ) {
         self.totalSleepTime = totalSleepTime
+        self.sleepEvents = sleepEvents
         self.effectiveTimeFrame = effectiveTimeFrame
         self.isMainSleep = isMainSleep
         self.descriptiveStatistic = descriptiveStatistic
@@ -54,6 +60,7 @@ public struct TotalSleepTime: Schema, Equatable {
     public init(from decoder: any Decoder) throws {
         let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         totalSleepTime = try container.decode(DurationUnitValue.self, forKey: .totalSleepTime)
+        sleepEvents = try container.decodeIfPresent([TimeInterval].self, forKey: .sleepEvents) ?? []
         effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
         isMainSleep = try container.decodeIfPresent(Bool.self, forKey: .isMainSleep)
         descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
@@ -61,5 +68,17 @@ public struct TotalSleepTime: Schema, Equatable {
             DescriptiveStatisticDenominator.self,
             forKey: .descriptiveStatisticDenominator
         )
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(totalSleepTime, forKey: .totalSleepTime)
+        if !sleepEvents.isEmpty {
+            try container.encode(sleepEvents, forKey: .sleepEvents)
+        }
+        try container.encode(effectiveTimeFrame, forKey: .effectiveTimeFrame)
+        try container.encodeIfPresent(isMainSleep, forKey: .isMainSleep)
+        try container.encodeIfPresent(descriptiveStatistic, forKey: .descriptiveStatistic)
+        try container.encodeIfPresent(descriptiveStatisticDenominator, forKey: .descriptiveStatisticDenominator)
     }
 }

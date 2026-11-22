@@ -11,9 +11,9 @@ import Foundation
 import Testing
 
 
-@Suite("Geoposition Measurement Tests")
+@Suite("Geoposition Tests")
 // swiftlint:disable type_body_length attributes
-struct GeopositionMeasurementTests {
+struct GeopositionTests {
     var sampleDateTime: DateTime {
         DateTime(date: Date(timeIntervalSince1970: 1_700_000_000))
     }
@@ -53,7 +53,7 @@ struct GeopositionMeasurementTests {
     func testSatelliteSignalStrengthEncoding() throws {
         let signalStrength = SatelliteSignalStrength(value: 30)
         
-        let encoder = JSONEncoder()
+        let encoder = SchemaCoders.encoder
         let data = try encoder.encode(signalStrength)
         let jsonString = String(data: data, encoding: .utf8)
         
@@ -75,7 +75,7 @@ struct GeopositionMeasurementTests {
             return
         }
         
-        let decoder = JSONDecoder()
+        let decoder = SchemaCoders.decoder
         let signalStrength = try decoder.decode(SatelliteSignalStrength.self, from: data)
         
         #expect(signalStrength.unit == "dB")
@@ -96,7 +96,7 @@ struct GeopositionMeasurementTests {
             return
         }
         
-        let decoder = JSONDecoder()
+        let decoder = SchemaCoders.decoder
         #expect(throws: DecodingError.self) {
             _ = try decoder.decode(SatelliteSignalStrength.self, from: data)
         }
@@ -122,7 +122,7 @@ struct GeopositionMeasurementTests {
     func testElevationMeasurementEncoding() throws {
         let elevation = ElevationMeasurement(unit: .m, value: 50.25)
         
-        let encoder = JSONEncoder()
+        let encoder = SchemaCoders.encoder
         let data = try encoder.encode(elevation)
         let jsonString = String(data: data, encoding: .utf8)
         
@@ -144,7 +144,7 @@ struct GeopositionMeasurementTests {
             return
         }
         
-        let decoder = JSONDecoder()
+        let decoder = SchemaCoders.decoder
         let elevation = try decoder.decode(ElevationMeasurement.self, from: data)
         
         #expect(elevation.unit == .ft)
@@ -152,8 +152,8 @@ struct GeopositionMeasurementTests {
     }
     
     @Test("Basic Geoposition Measurement Creation")
-    func testBasicGeopositionMeasurementCreation() {
-        let geoposition = GeopositionMeasurement(
+    func testBasicGeopositionCreation() {
+        let geoposition = Geoposition(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
             effectiveTimeFrame: sampleTimeFrame
@@ -170,7 +170,7 @@ struct GeopositionMeasurementTests {
     }
     
     @Test("Complete Geoposition Measurement Creation")
-    func testCompleteGeopositionMeasurementCreation() {
+    func testCompleteGeopositionCreation() {
         let elevation = ElevationMeasurement(unit: .m, value: 15.0)
         let signalStrengths = [
             SatelliteSignalStrength(value: 25),
@@ -178,7 +178,7 @@ struct GeopositionMeasurementTests {
             SatelliteSignalStrength(value: 22)
         ]
         
-        let geoposition = GeopositionMeasurement(
+        let geoposition = Geoposition(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
             effectiveTimeFrame: sampleTimeFrame,
@@ -200,9 +200,9 @@ struct GeopositionMeasurementTests {
     }
     
     @Test("Geoposition Measurement Encoding")
-    func testGeopositionMeasurementEncoding() throws {
+    func testGeopositionEncoding() throws {
         let elevation = ElevationMeasurement(unit: .ft, value: 50.0)
-        let geoposition = GeopositionMeasurement(
+        let geoposition = Geoposition(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
             effectiveTimeFrame: sampleTimeFrame,
@@ -212,7 +212,7 @@ struct GeopositionMeasurementTests {
             positioningSystem: .Galileo
         )
         
-        let encoder = JSONEncoder()
+        let encoder = SchemaCoders.encoder
         let data = try encoder.encode(geoposition)
         let jsonString = String(data: data, encoding: .utf8)
         
@@ -227,7 +227,7 @@ struct GeopositionMeasurementTests {
     }
     
     @Test("Geoposition Measurement Basic Decoding")
-    func testGeopositionMeasurementBasicDecoding() throws {
+    func testGeopositionBasicDecoding() throws {
         let json = """
         {
             "latitude": {
@@ -249,8 +249,8 @@ struct GeopositionMeasurementTests {
             return
         }
         
-        let decoder = JSONDecoder()
-        let geoposition = try decoder.decode(GeopositionMeasurement.self, from: data)
+        let decoder = SchemaCoders.decoder
+        let geoposition = try decoder.decode(Geoposition.self, from: data)
         
         #expect(geoposition.latitude.unit == .deg)
         #expect(geoposition.latitude.value == 37.4419)
@@ -261,7 +261,7 @@ struct GeopositionMeasurementTests {
     }
     
     @Test("Geoposition Measurement Complete Decoding")
-    func testGeopositionMeasurementCompleteDecoding() throws {
+    func testGeopositionCompleteDecoding() throws {
         let json = """
         {
             "latitude": {
@@ -300,8 +300,8 @@ struct GeopositionMeasurementTests {
             return
         }
         
-        let decoder = JSONDecoder()
-        let geoposition = try decoder.decode(GeopositionMeasurement.self, from: data)
+        let decoder = SchemaCoders.decoder
+        let geoposition = try decoder.decode(Geoposition.self, from: data)
         
         #expect(geoposition.latitude.value == 40.7128)
         #expect(geoposition.longitude.value == -74.0060)
@@ -316,7 +316,7 @@ struct GeopositionMeasurementTests {
     }
     
     @Test("Geoposition Measurement Invalid Time Frame Decoding")
-    func testGeopositionMeasurementInvalidTimeFrameDecoding() throws {
+    func testGeopositionInvalidTimeFrameDecoding() throws {
         let json = """
         {
             "latitude": {
@@ -344,19 +344,19 @@ struct GeopositionMeasurementTests {
             return
         }
         
-        let decoder = JSONDecoder()
+        let decoder = SchemaCoders.decoder
         #expect(throws: DecodingError.self) {
-            _ = try decoder.decode(GeopositionMeasurement.self, from: data)
+            _ = try decoder.decode(Geoposition.self, from: data)
         }
     }
     
     @Test("Geoposition Measurement Equality")
-    func testGeopositionMeasurementEquality() {
+    func testGeopositionEquality() {
         let elevation1 = ElevationMeasurement(unit: .m, value: 100.0)
         let elevation2 = ElevationMeasurement(unit: .m, value: 100.0)
         let elevation3 = ElevationMeasurement(unit: .ft, value: 100.0)
         
-        let geoposition1 = GeopositionMeasurement(
+        let geoposition1 = Geoposition(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
             effectiveTimeFrame: sampleTimeFrame,
@@ -364,7 +364,7 @@ struct GeopositionMeasurementTests {
             positioningSystem: .GPS
         )
         
-        let geoposition2 = GeopositionMeasurement(
+        let geoposition2 = Geoposition(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
             effectiveTimeFrame: sampleTimeFrame,
@@ -372,7 +372,7 @@ struct GeopositionMeasurementTests {
             positioningSystem: .GPS
         )
         
-        let geoposition3 = GeopositionMeasurement(
+        let geoposition3 = Geoposition(
             latitude: sampleLatitude,
             longitude: sampleLongitude,
             effectiveTimeFrame: sampleTimeFrame,
@@ -386,8 +386,8 @@ struct GeopositionMeasurementTests {
     
     @Test("Schema ID")
     func testSchemaId() {
-        #expect(GeopositionMeasurement.schemaId.namespace == .omh)
-        #expect(GeopositionMeasurement.schemaId.name == "geoposition-measurement")
-        #expect(GeopositionMeasurement.schemaId.version == "1.0")
+        #expect(Geoposition.schemaId.namespace == .omh)
+        #expect(Geoposition.schemaId.name == "geoposition")
+        #expect(Geoposition.schemaId.version == "2.0")
     }
 }

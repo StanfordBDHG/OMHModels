@@ -1,0 +1,23 @@
+{
+    "description": "the wheelchair propulsion episode that occurred on April 15, 2019 between 00:00:00 and 23:59:00 had a net duration of 1439 minutes, corresponded to 20.0 minutes of moderate intensity activity. The number of wheelchair pushes performed was 1200. The distance covered was 1.2 mi",
+    "activity_name": "Wheelchair Propulsion",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-04-15T00:00:00Z",
+            "end_date_time": "2019-04-15T23:59:00Z"
+        }
+    },
+    "distance": {
+        "value": 1.2,
+        "unit": "mi"
+    },
+    "base_movement_quantity": {
+        "value": 1200,
+        "unit": "wheelchair pushes"
+    },
+    "duration": {
+        "value": 20,
+        "unit": "min"
+    },
+    "reported_activity_intensity": "moderate"
+}

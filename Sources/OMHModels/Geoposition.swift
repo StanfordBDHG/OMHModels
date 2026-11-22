@@ -90,8 +90,8 @@ public struct ElevationMeasurement: Codable, Equatable, Sendable {
 }
 
 /// A geographic position measurement
-/// This schema represents a geographic position measurement.
-public struct GeopositionMeasurement: Schema, Codable, Equatable, Sendable {
+/// Generated from Open mHealth `omh:geoposition:2.0` (https://w3id.org/openmhealth/schemas/omh/geoposition-2.0.json)
+public struct Geoposition: Schema, Codable, Equatable, Sendable {
     private enum CodingKeys: String, CodingKey {
         case latitude
         case longitude
@@ -104,7 +104,7 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable, Sendable {
     }
     
     /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "geoposition-measurement", version: "1.0")
+    public static let schemaId = SchemaId(namespace: .omh, name: "geoposition", version: "2.0")
     
     /// The angular distance of a place north or south of the earth's equator expressed in degrees
     public let latitude: PlaneAngleUnitValue
