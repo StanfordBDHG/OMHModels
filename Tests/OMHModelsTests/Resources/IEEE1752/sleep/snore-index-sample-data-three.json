@@ -1,0 +1,15 @@
+{
+    "snore_index": {
+        "value": 15,
+        "unit": "snores/h"
+    },
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-05T22:00:00Z",
+            "end_date_time": "2019-02-12T06:00:00Z"
+        }
+    },
+    "is_main_sleep": true,
+    "descriptive_statistic": "average",
+    "descriptive_statistic_denominator": "d"
+}

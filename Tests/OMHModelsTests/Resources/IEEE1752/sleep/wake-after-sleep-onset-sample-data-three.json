@@ -1,0 +1,12 @@
+{
+    "wake_after_sleep_onset": {
+        "value": 25,
+        "unit": "min"
+    },
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-05T22:00:00Z",
+            "end_date_time": "2019-02-06T06:00:00Z"
+        }
+    }
+}

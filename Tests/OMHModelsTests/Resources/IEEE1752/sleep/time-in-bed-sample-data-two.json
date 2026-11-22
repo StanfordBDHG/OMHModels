@@ -1,0 +1,13 @@
+{
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-18T22:30:00Z",
+            "end_date_time": "2019-02-19T06:10:00Z"
+        }
+    },
+    "time_in_bed": {
+        "value": 460,
+        "unit": "min"
+    },
+    "is_main_sleep": true
+}

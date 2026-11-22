@@ -1,0 +1,13 @@
+{
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2018-02-05T11:35:00Z",
+            "end_date_time": "2018-02-05T11:55:00Z"
+        }
+    },
+    "sleep_onset_latency": {
+        "value": 5.0,
+        "unit": "min"
+    },
+    "is_main_sleep": false
+}

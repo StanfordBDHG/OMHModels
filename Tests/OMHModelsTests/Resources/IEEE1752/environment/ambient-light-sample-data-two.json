@@ -1,0 +1,37 @@
+{
+    "ambient_light": [
+        {
+            "wavelength": {
+                "value": 440,
+                "unit": "nm"
+            },
+            "intensity": {
+                "value": 9.8,
+                "unit": "lx"
+            }
+        },
+        {
+            "wavelength": {
+                "value": 453,
+                "unit": "nm"
+            },
+            "intensity": {
+                "value": 10.1,
+                "unit": "lx"
+            }
+        },
+        {
+            "wavelength": {
+                "value": 461,
+                "unit": "nm"
+            },
+            "intensity": {
+                "value": 10.8,
+                "unit": "lx"
+            }
+        }
+    ],
+    "effective_time_frame": {
+        "date_time": "2019-02-06T23:00:00Z"
+    }
+}

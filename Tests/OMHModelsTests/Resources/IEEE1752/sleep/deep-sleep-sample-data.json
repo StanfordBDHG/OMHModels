@@ -1,0 +1,21 @@
+{
+    "deep_sleep_duration": {
+        "value": 168,
+        "unit": "min"
+    },
+    "total_sleep_time": {
+        "value": 480,
+        "unit": "min"
+    },
+    "deep_sleep_percentage": {
+        "value": 35,
+        "unit": "%"
+    },
+    "is_main_sleep": true,
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-02-05T22:00:00Z",
+            "end_date_time": "2019-02-06T06:00:00Z"
+        }
+    }
+}
