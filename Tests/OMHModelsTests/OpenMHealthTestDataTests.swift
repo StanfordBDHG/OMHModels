@@ -95,4 +95,18 @@ struct OpenMHealthTestDataTests {
         #expect(encoded.contains(#""measurement_location":"left wrist""#))
         #expect(!encoded.contains("body_location"))
     }
+
+    @Test("The deprecated blood pressure body location reads and writes the measurement location")
+    @available(*, deprecated, message: "Tests the deprecated bodyLocation alias")
+    func deprecatedBodyLocation() {
+        var bloodPressure = BloodPressure(
+            systolicBloodPressure: BloodPressureUnitValue(unit: .mmHg, value: 120),
+            diastolicBloodPressure: BloodPressureUnitValue(unit: .mmHg, value: 80),
+            effectiveTimeFrame: TimeFrame(dateTime: DateTime(date: Date(timeIntervalSince1970: 1_700_000_000))),
+            measurementLocation: .leftWrist
+        )
+        #expect(bloodPressure.bodyLocation == .leftWrist)
+        bloodPressure.bodyLocation = .rightUpperArm
+        #expect(bloodPressure.measurementLocation == .rightUpperArm)
+    }
 }
