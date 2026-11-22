@@ -7,7 +7,7 @@
 
 
 /// A code that can be used to identify a categorical answer
-public enum SurveyCategoricalCode: Codable, Sendable {
+public enum SurveyCategoricalCode: Codable, Hashable, Sendable {
     case string(String)
     case number(Double)
     
@@ -40,7 +40,7 @@ public enum SurveyCategoricalCode: Codable, Sendable {
 
 /// A categorical answer to a survey question
 /// Generated from IEEE 1752.1 `survey-categorical-answer-1.0` (https://w3id.org/ieee/ieee-1752-schema/survey-categorical-answer.json)
-public struct SurveyCategoricalAnswer: Schema {
+public struct SurveyCategoricalAnswer: Schema, Hashable {
     /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "survey-categorical-answer", version: "1.0")
     

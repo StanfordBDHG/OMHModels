@@ -1,0 +1,14 @@
+{
+  "descriptive_statistic" : "sum",
+  "descriptive_statistic_denominator" : "d",
+  "effective_time_frame" : {
+    "time_interval" : {
+      "end_date_time" : "2023-11-14T23:13:20Z",
+      "start_date_time" : "2023-11-14T22:13:20Z"
+    }
+  },
+  "step_count" : {
+    "unit" : "steps",
+    "value" : 1000
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "bodyFatPercentage" : {
+    "unit" : "%",
+    "value" : 18
+  },
+  "descriptiveStatistic" : "median",
+  "effectiveTimeFrame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  }
+}

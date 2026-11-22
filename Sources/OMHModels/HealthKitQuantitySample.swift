@@ -9,7 +9,13 @@
 
 /// A HealthKit Quantity Sample that represents data using a single numerical value and unit.
 /// Generated from Open mHealth `granola:hk-quantity-sample:1.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/granola_hk-quantity-sample)
-public struct HealthKitQuantitySample: Schema {
+public struct HealthKitQuantitySample: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case quantityType = "quantity_type"
+        case unitValue = "unit_value"
+        case effectiveTimeFrame = "effective_time_frame"
+    }
+
     /// An Open mHealth schema identifier
     public static var schemaId: SchemaId {
         SchemaId(namespace: .granola, name: "hk-quantity-sample", version: "1.0")
@@ -33,5 +39,12 @@ public struct HealthKitQuantitySample: Schema {
         self.quantityType = quantityType
         self.unitValue = unitValue
         self.effectiveTimeFrame = effectiveTimeFrame
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        quantityType = try container.decode(String.self, forKey: .quantityType)
+        unitValue = try container.decode(HealthKitUnitValue.self, forKey: .unitValue)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
     }
 }

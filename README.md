@@ -82,54 +82,48 @@ To create an instance of the `TotalSleepTime` struct:
 
 ```swift
 let sleepTime = TotalSleepTime(
-    totalSleepTime: DurationUnitValue(value: 8, unit: .hour),
-    effectiveTimeFrame: TimeFrame(timeInterval: 
-        TimeInterval(
-            startDateTime: // Date, 
-            endDateTime: // Date
-        ),
-    isMainSleep: true,
-    descriptiveStatistic: .average,
-    descriptiveStatisticDenominator: .week
+    totalSleepTime: DurationUnitValue(unit: .h, value: 8),
+    effectiveTimeFrame: TimeFrame(
+        timeInterval: OMHModels.TimeInterval(
+            startDateTime: DateTime(date: startDate),
+            endDateTime: DateTime(date: endDate)
+        )
+    ),
+    isMainSleep: true
 )
+```
+
+> [!NOTE]
+> `OMHModels.TimeInterval` shares its name with `Foundation.TimeInterval`. Qualify it with the module name in files that import Foundation.
+
+To wrap a schema in an IEEE 1752 data point with a header:
+
+```swift
+let dataPoint = SchemaDataPoint(body: sleepTime, modality: .sensed)
 ```
 
 ### Encoding to JSON 
 
-To encode the `TotalSleepTime` instance to JSON:
+The models encode and decode the snake case property names used by IEEE 1752 and Open mHealth themselves, so no `keyEncodingStrategy` or `keyDecodingStrategy` is needed. Coders that still set the `convertToSnakeCase` and `convertFromSnakeCase` strategies recommended by earlier versions keep working.
 
 ```swift
-let json: String
-do {
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes, .sortedKeys]
-    
-    // Note that both IEEE 1752 and Open mHealth use snake case for its properties when represneted in JSON
-    encoder.keyCodingStrategy = .convertToSnakeCase
-    
-    let data = try encoder.encode(sleepTime)
-    json = String(data: jsonData, encoding: .utf8)
-} catch {
-    print("Error encoding to JSON: \(error)")
-}
+let encoder = JSONEncoder()
+encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes, .sortedKeys]
+
+let data = try encoder.encode(dataPoint)
+let json = String(decoding: data, as: UTF8.self)
 ```
 
 ### Decoding from JSON
 
-To decode a JSON string back to a `TotalSleepTime` instance:
-
 ```swift
-let jsonString = /* your JSON string here */
-if let jsonData = jsonString.data(using: .utf8) {
-    do {
-        let decoder = JSONDecoder()
-        let decodedSleepTime = try decoder.decode(TotalSleepTime.self, from: jsonData)
-        print(decodedSleepTime)
-    } catch {
-        print("Error decoding from JSON: \(error)")
-    }
-}
+let dataPoint = try JSONDecoder().decode(SchemaDataPoint<TotalSleepTime>.self, from: data)
 ```
+
+Data encoded by earlier versions of OMHModels, with or without key coding strategies, still decodes.
+
+> [!IMPORTANT]
+> The models only keep the properties defined by their schemas. Other properties in the JSON are dropped when decoding, so decoding and encoding data again loses them. Keep the original JSON if you need to preserve it unchanged.
 
 ## License
 This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordBDHG/OMHModels/tree/main/LICENSES) for more information.

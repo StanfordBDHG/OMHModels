@@ -24,7 +24,8 @@ public enum PositioningSystem: String, Codable, CaseIterable, Sendable {
 /// Signal-to-noise ratio measurement in decibels
 public struct SatelliteSignalStrength: Codable, Equatable, Sendable {
     private enum CodingKeys: String, CodingKey {
-        case unit, value
+        case unit
+        case value
     }
     
     public let unit: String = "dB"
@@ -35,7 +36,7 @@ public struct SatelliteSignalStrength: Codable, Equatable, Sendable {
     }
     
     public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         let decodedUnit = try container.decode(String.self, forKey: .unit)
         guard decodedUnit == "dB" else {
             throw DecodingError.dataCorrupted(
@@ -63,7 +64,8 @@ public struct ElevationMeasurement: Codable, Equatable, Sendable {
     }
     
     private enum CodingKeys: String, CodingKey {
-        case unit, value
+        case unit
+        case value
     }
     
     public let unit: ElevationUnit
@@ -75,7 +77,7 @@ public struct ElevationMeasurement: Codable, Equatable, Sendable {
     }
     
     public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         unit = try container.decode(ElevationUnit.self, forKey: .unit)
         value = try container.decode(Double.self, forKey: .value)
     }
@@ -149,7 +151,7 @@ public struct GeopositionMeasurement: Schema, Codable, Equatable, Sendable {
     }
     
     public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         
         latitude = try container.decode(PlaneAngleUnitValue.self, forKey: .latitude)
         longitude = try container.decode(PlaneAngleUnitValue.self, forKey: .longitude)

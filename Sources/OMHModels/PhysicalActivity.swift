@@ -39,9 +39,28 @@ public enum ReportedActivityIntensity: String, Codable, Sendable {
 
 /// Episode(s) of physical activity
 /// Generated from IEEE 1752.1 `physical-activity-1.0` (https://w3id.org/ieee/ieee-1752-schema/physical-activity.json)
-public struct PhysicalActivity: Schema {
+public struct PhysicalActivity: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case activityName = "activity_name"
+        case baseMovementQuantity = "base_movement_quantity"
+        case effectiveTimeFrame = "effective_time_frame"
+        case distance
+        case cumulativeElevationGain = "cumulative_elevation_gain"
+        case duration
+        case durationLightActivity = "duration_light_activity"
+        case durationModerateActivity = "duration_moderate_activity"
+        case durationVigorousActivity = "duration_vigorous_activity"
+        case averageCadence = "average_cadence"
+        case averageSpeed = "average_speed"
+        case kcalBurned = "kcal_burned"
+        case reportedActivityIntensity = "reported_activity_intensity"
+        case metValue = "met_value"
+        case descriptiveStatistic = "descriptive_statistic"
+        case descriptiveStatisticDenominator = "descriptive_statistic_denominator"
+    }
+
     /// The IEEE 1752 schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "physical-activity", version: "1.0")
+    public static let schemaId = SchemaId(namespace: .ieee, name: "physical-activity", version: "1.0")
     
     /// The name of the physical activity in which the person is engaged. This can be sedentary. It is recommended that the activity name be drawn from the latest CDC guidelines to facilitate mapping to standard energy expenditure values (METs) or other peer-reviewed source.
     public var activityName: String
@@ -127,5 +146,28 @@ public struct PhysicalActivity: Schema {
         self.metValue = metValue
         self.descriptiveStatistic = descriptiveStatistic
         self.descriptiveStatisticDenominator = descriptiveStatisticDenominator
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        activityName = try container.decode(String.self, forKey: .activityName)
+        baseMovementQuantity = try container.decodeIfPresent(BaseMovementQuantityUnitValue.self, forKey: .baseMovementQuantity)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        distance = try container.decodeIfPresent(LengthUnitValue.self, forKey: .distance)
+        cumulativeElevationGain = try container.decodeIfPresent(LengthUnitValue.self, forKey: .cumulativeElevationGain)
+        duration = try container.decodeIfPresent(DurationUnitValue.self, forKey: .duration)
+        durationLightActivity = try container.decodeIfPresent(DurationUnitValue.self, forKey: .durationLightActivity)
+        durationModerateActivity = try container.decodeIfPresent(DurationUnitValue.self, forKey: .durationModerateActivity)
+        durationVigorousActivity = try container.decodeIfPresent(DurationUnitValue.self, forKey: .durationVigorousActivity)
+        averageCadence = try container.decodeIfPresent(AverageCadenceUnitValue.self, forKey: .averageCadence)
+        averageSpeed = try container.decodeIfPresent(SpeedUnitValue.self, forKey: .averageSpeed)
+        kcalBurned = try container.decodeIfPresent(KcalUnitValue.self, forKey: .kcalBurned)
+        reportedActivityIntensity = try container.decodeIfPresent(ReportedActivityIntensity.self, forKey: .reportedActivityIntensity)
+        metValue = try container.decodeIfPresent(Double.self, forKey: .metValue)
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
+        descriptiveStatisticDenominator = try container.decodeIfPresent(
+            DescriptiveStatisticDenominator.self,
+            forKey: .descriptiveStatisticDenominator
+        )
     }
 }

@@ -1,0 +1,10 @@
+{
+  "body_height" : {
+    "unit" : "cm",
+    "value" : 180
+  },
+  "descriptive_statistic" : "maximum",
+  "effective_time_frame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  }
+}

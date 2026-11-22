@@ -42,8 +42,8 @@ struct HeaderTests {
         )
         let modality = Modality.selfReported
         let acquisitionRate = FrequencyUnitValue(
-            timeWindow: TimeWindow.duration(DurationUnitValue(unit: TimeUnit.h, value: 1.0)),
-            numberOfTimes: 10
+            numberOfTimes: 10,
+            timeWindow: TimeWindow.duration(DurationUnitValue(unit: TimeUnit.h, value: 1.0))
         )
         let externalDatasheet = ExternalDataSheet(datasheetReference: "reference")
         

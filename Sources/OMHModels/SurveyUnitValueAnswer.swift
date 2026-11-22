@@ -22,3 +22,5 @@ public struct SurveyUnitValueAnswer<UnitType: UnitProtocol>: Schema {
         self.value = value
     }
 }
+
+extension SurveyUnitValueAnswer: Equatable where UnitType: Equatable {}

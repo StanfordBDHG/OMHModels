@@ -8,7 +8,15 @@
 
 /// A Heart Rate measurement
 /// Generated from Open mHealth `omh:heart-rate:2.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_heart-rate)
-public struct HeartRate: Schema {
+public struct HeartRate: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case heartRate = "heart_rate"
+        case effectiveTimeFrame = "effective_time_frame"
+        case temporalRelationshipToSleep = "temporal_relationship_to_sleep"
+        case temporalRelationshipToPhysicalActivity = "temporal_relationship_to_physical_activity"
+        case descriptiveStatistic = "descriptive_statistic"
+    }
+
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "heart-rate", version: "2.0")
     
@@ -41,5 +49,17 @@ public struct HeartRate: Schema {
         self.temporalRelationshipToSleep = temporalRelationshipToSleep
         self.temporalRelationshipToPhysicalActivity = temporalRelationshipToPhysicalActivity
         self.descriptiveStatistic = descriptiveStatistic
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        heartRate = try container.decode(HeartRateUnitValue.self, forKey: .heartRate)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        temporalRelationshipToSleep = try container.decodeIfPresent(TemporalRelationshipToSleep.self, forKey: .temporalRelationshipToSleep)
+        temporalRelationshipToPhysicalActivity = try container.decodeIfPresent(
+            TemporalRelationshipToPhysicalActivity.self,
+            forKey: .temporalRelationshipToPhysicalActivity
+        )
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
     }
 }

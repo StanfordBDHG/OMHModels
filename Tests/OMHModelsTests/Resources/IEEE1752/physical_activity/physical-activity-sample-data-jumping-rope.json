@@ -1,0 +1,19 @@
+{
+    "description": "the jumping rope workout episode that occurred on April 15, 2019 between 11:30:00 and 11:40:00 had a net duration of 10 minutes, corresponded to 10.0 minutes of moderate intensity activity. The number of skips performed was 500",
+    "activity_name": "Jumping Rope Workout",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-04-15T11:30:00Z",
+            "end_date_time": "2019-04-15T11:40:00Z"
+        }
+    },
+    "base_movement_quantity": {
+        "value": 500,
+        "unit": "skips"
+    },
+    "duration": {
+        "value": 10,
+        "unit": "min"
+    },
+    "reported_activity_intensity": "moderate"
+}

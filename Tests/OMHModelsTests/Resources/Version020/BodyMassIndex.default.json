@@ -1,0 +1,10 @@
+{
+  "bodyMassIndex" : {
+    "unit" : "kg/m^2",
+    "value" : 22
+  },
+  "descriptiveStatistic" : "average",
+  "effectiveTimeFrame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  }
+}

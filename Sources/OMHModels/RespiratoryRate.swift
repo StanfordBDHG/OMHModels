@@ -8,7 +8,14 @@
 
 /// A Respiratory Rate measurement
 /// Generated from Open mHealth `omh:respiratory-rate:2.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_respiratory-rate)
-public struct RespiratoryRate: Schema {
+public struct RespiratoryRate: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case respiratoryRate = "respiratory_rate"
+        case effectiveTimeFrame = "effective_time_frame"
+        case temporalRelationshipToPhysicalActivity = "temporal_relationship_to_physical_activity"
+        case descriptiveStatistic = "descriptive_statistic"
+    }
+
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "respiratory-rate", version: "2.0")
     
@@ -36,5 +43,16 @@ public struct RespiratoryRate: Schema {
         self.effectiveTimeFrame = effectiveTimeFrame
         self.temporalRelationshipToPhysicalActivity = temporalRelationshipToPhysicalActivity
         self.descriptiveStatistic = descriptiveStatistic
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        respiratoryRate = try container.decode(RespiratoryRateUnitValue.self, forKey: .respiratoryRate)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        temporalRelationshipToPhysicalActivity = try container.decodeIfPresent(
+            TemporalRelationshipToPhysicalActivity.self,
+            forKey: .temporalRelationshipToPhysicalActivity
+        )
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
     }
 }

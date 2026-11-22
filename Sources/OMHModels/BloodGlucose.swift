@@ -8,7 +8,16 @@
 
 /// A Blood Glucose measurement
 /// Generated from Open mHealth `omh:blood-glucose:3.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_blood-glucose)
-public struct BloodGlucose: Schema {
+public struct BloodGlucose: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case bloodGlucose = "blood_glucose"
+        case effectiveTimeFrame = "effective_time_frame"
+        case specimenSource = "specimen_source"
+        case temporalRelationshipToMeal = "temporal_relationship_to_meal"
+        case temporalRelationshipToSleep = "temporal_relationship_to_sleep"
+        case descriptiveStatistic = "descriptive_statistic"
+    }
+
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "blood-glucose", version: "3.0")
     
@@ -46,5 +55,15 @@ public struct BloodGlucose: Schema {
         self.temporalRelationshipToMeal = temporalRelationshipToMeal
         self.temporalRelationshipToSleep = temporalRelationshipToSleep
         self.descriptiveStatistic = descriptiveStatistic
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        bloodGlucose = try container.decode(BloodGlucoseUnitValue.self, forKey: .bloodGlucose)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        specimenSource = try container.decodeIfPresent(SpecimenSource.self, forKey: .specimenSource)
+        temporalRelationshipToMeal = try container.decodeIfPresent(TemporalRelationshipToMeal.self, forKey: .temporalRelationshipToMeal)
+        temporalRelationshipToSleep = try container.decodeIfPresent(TemporalRelationshipToSleep.self, forKey: .temporalRelationshipToSleep)
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
     }
 }

@@ -1,0 +1,15 @@
+{
+  "effective_time_frame" : {
+    "time_interval" : {
+      "end_date_time" : "2023-11-14T23:13:20Z",
+      "start_date_time" : "2023-11-14T22:13:20Z"
+    }
+  },
+  "quantity_type" : "HKQuantityTypeIdentifierStepCount",
+  "unit_value" : {
+    "unit" : {
+      "unit" : "count"
+    },
+    "value" : 12
+  }
+}

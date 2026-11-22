@@ -8,7 +8,14 @@
 
 /// A survey item, i.e., the combination of a question and the list of its answers
 /// Generated from IEEE 1752.1 `survey-item-1.0` (https://w3id.org/ieee/ieee-1752-schema/survey-item.json)
-public struct SurveyItem: Schema {
+public struct SurveyItem: Schema, Hashable {
+    private enum CodingKeys: String, CodingKey {
+        case question
+        case answers
+        case askedDateTime = "asked_date_time"
+        case answeredDateTime = "answered_date_time"
+    }
+
     /// The IEEE 1752 schema identifier
     public static let schemaId = SchemaId(namespace: .ieee, name: "survey-item", version: "1.0")
     
@@ -30,5 +37,13 @@ public struct SurveyItem: Schema {
         self.answers = answers
         self.askedDateTime = askedDateTime
         self.answeredDateTime = answeredDateTime
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        question = try container.decode(SurveyQuestion.self, forKey: .question)
+        answers = try container.decode([SurveyAnswer].self, forKey: .answers)
+        askedDateTime = try container.decodeIfPresent(DateTime.self, forKey: .askedDateTime)
+        answeredDateTime = try container.decodeIfPresent(DateTime.self, forKey: .answeredDateTime)
     }
 }

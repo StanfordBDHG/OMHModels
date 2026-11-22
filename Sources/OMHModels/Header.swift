@@ -10,7 +10,16 @@ public import Foundation
 
 /// This schema represents the header of a data point or data series.
 /// Generated from IEEE 1752.1 `header-1.0` (https://w3id.org/ieee/ieee-1752-schema/header.json)
-public struct Header: Codable, Sendable {
+public struct Header: Codable, Sendable, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case uuid
+        case schemaId = "schema_id"
+        case sourceCreationDateTime = "source_creation_date_time"
+        case modality
+        case acquisitionRate = "acquisition_rate"
+        case externalDatasheets = "external_datasheets"
+    }
+
     /// The identifier of this data point - should be a globally unique value.
     public var uuid: String
 
@@ -45,5 +54,15 @@ public struct Header: Codable, Sendable {
         self.modality = modality
         self.acquisitionRate = acquisitionRate
         self.externalDatasheets = externalDatasheets
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        uuid = try container.decode(String.self, forKey: .uuid)
+        schemaId = try container.decode(SchemaId.self, forKey: .schemaId)
+        sourceCreationDateTime = try container.decode(DateTime.self, forKey: .sourceCreationDateTime)
+        modality = try container.decodeIfPresent(Modality.self, forKey: .modality)
+        acquisitionRate = try container.decodeIfPresent(FrequencyUnitValue.self, forKey: .acquisitionRate)
+        externalDatasheets = try container.decodeIfPresent([ExternalDataSheet].self, forKey: .externalDatasheets) ?? []
     }
 }

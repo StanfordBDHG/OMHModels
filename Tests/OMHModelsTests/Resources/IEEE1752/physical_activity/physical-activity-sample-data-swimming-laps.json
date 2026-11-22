@@ -1,0 +1,27 @@
+{
+    "description": "the swimming episode that occurred on April 16, 2019 between 8:00:00 and 8:10:00 had a net duration of 3.00 minutes, corresponded to standard energy expenditure of 6.5 METs. The swimmer completed a distance of 0.10 km in 4 laps with an average_cadence of 30 strokes per lap ",
+    "activity_name": "Swimming",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2019-04-16T08:00:00Z",
+            "end_date_time": "2019-04-16T08:10:00Z"
+        }
+    },
+    "distance": {
+        "value": 100,
+        "unit": "m"
+    },
+    "duration": {
+        "value": 180,
+        "unit": "sec"
+    },
+    "base_movement_quantity": {
+        "value": 4,
+        "unit": "laps"
+    },
+    "met_value": 6.5,
+    "average_cadence": {
+        "value": 30,
+        "unit": "strokes/lap"
+    }
+}

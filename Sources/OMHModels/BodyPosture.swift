@@ -16,6 +16,6 @@ public enum BodyPosture: String, Schema {
     case standing
     case semiRecumbent = "semi-recumbent"
     
-    /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "body-posture", version: "1.0")
+    /// The IEEE 1752 schema identifier
+    public static let schemaId = SchemaId(namespace: .ieee, name: "body-posture", version: "1.0")
 }

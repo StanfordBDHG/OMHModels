@@ -9,7 +9,12 @@ import Foundation
 
 
 /// Reference(s) to external documentation regarding the component(s) relevant to describe the collection, computation, use, etc. of this datapoint or data series, e.g., software, algorithm, study protocol, etc.
-public struct ExternalDataSheet: Codable, Sendable, Equatable {
+public struct ExternalDataSheet: Codable, Sendable, Hashable {
+    private enum CodingKeys: String, CodingKey {
+        case datasheetType = "datasheet_type"
+        case datasheetReference = "datasheet_reference"
+    }
+
     /// The type of component described or documented by the referenced datasheet, e.g., software, hardware, study.
     public var datasheetType: String?
     
@@ -25,5 +30,11 @@ public struct ExternalDataSheet: Codable, Sendable, Equatable {
     ) {
         self.datasheetType = datasheetType
         self.datasheetReference = datasheetReference
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        datasheetType = try container.decodeIfPresent(String.self, forKey: .datasheetType)
+        datasheetReference = try container.decode(String.self, forKey: .datasheetReference)
     }
 }

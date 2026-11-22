@@ -1,0 +1,53 @@
+{
+  "activity_name" : "Running",
+  "average_cadence" : {
+    "unit" : "steps/min",
+    "value" : 160
+  },
+  "average_speed" : {
+    "unit" : "km/h",
+    "value" : 10
+  },
+  "base_movement_quantity" : {
+    "unit" : "steps",
+    "value" : 5000
+  },
+  "cumulative_elevation_gain" : {
+    "unit" : "m",
+    "value" : 20
+  },
+  "descriptive_statistic" : "sum",
+  "descriptive_statistic_denominator" : "session",
+  "distance" : {
+    "unit" : "km",
+    "value" : 5
+  },
+  "duration" : {
+    "unit" : "h",
+    "value" : 1
+  },
+  "duration_light_activity" : {
+    "unit" : "min",
+    "value" : 10
+  },
+  "duration_moderate_activity" : {
+    "unit" : "min",
+    "value" : 20
+  },
+  "duration_vigorous_activity" : {
+    "unit" : "min",
+    "value" : 30
+  },
+  "effective_time_frame" : {
+    "time_interval" : {
+      "end_date_time" : "2023-11-14T23:13:20Z",
+      "start_date_time" : "2023-11-14T22:13:20Z"
+    }
+  },
+  "kcal_burned" : {
+    "unit" : "kcal",
+    "value" : 400
+  },
+  "met_value" : 9.8,
+  "reported_activity_intensity" : "vigorous"
+}

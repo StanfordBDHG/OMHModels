@@ -1,0 +1,34 @@
+{
+  "deliveryDetails" : {
+    "endDateTime" : "2023-11-14T23:13:20Z",
+    "endStatus" : "completed",
+    "startDateTime" : "2023-11-14T22:13:20Z"
+  },
+  "items" : [
+    {
+      "answeredDateTime" : "2023-11-14T23:13:20Z",
+      "answers" : [
+        {
+          "value" : "Well"
+        },
+        {
+          "value" : 3
+        },
+        {
+          "value" : true
+        },
+        {
+          "value" : {
+            "unit" : "h"
+          }
+        }
+      ],
+      "askedDateTime" : "2023-11-14T22:13:20Z",
+      "question" : {
+        "label" : "q1",
+        "text" : "How did you sleep?"
+      }
+    }
+  ],
+  "score" : 5
+}

@@ -8,7 +8,14 @@
 
 /// A Step Count measurement
 /// Generated from Open mHealth `omh:step-count:3.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count)
-public struct StepCount: Schema {
+public struct StepCount: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case stepCount = "step_count"
+        case effectiveTimeFrame = "effective_time_frame"
+        case descriptiveStatistic = "descriptive_statistic"
+        case descriptiveStatisticDenominator = "descriptive_statistic_denominator"
+    }
+
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "step-count", version: "3.0")
     
@@ -36,5 +43,16 @@ public struct StepCount: Schema {
         self.effectiveTimeFrame = effectiveTimeFrame
         self.descriptiveStatistic = descriptiveStatistic
         self.descriptiveStatisticDenominator = descriptiveStatisticDenominator
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        stepCount = try container.decode(StepCountUnitValue.self, forKey: .stepCount)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
+        descriptiveStatisticDenominator = try container.decodeIfPresent(
+            DescriptiveStatisticDenominator.self,
+            forKey: .descriptiveStatisticDenominator
+        )
     }
 }

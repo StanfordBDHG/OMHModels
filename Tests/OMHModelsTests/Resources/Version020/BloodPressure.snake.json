@@ -1,0 +1,17 @@
+{
+  "body_location" : "left upper arm",
+  "body_posture" : "sitting",
+  "descriptive_statistic" : "minimum",
+  "diastolic_blood_pressure" : {
+    "unit" : "mmHg",
+    "value" : 80
+  },
+  "effective_time_frame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  },
+  "systolic_blood_pressure" : {
+    "unit" : "mmHg",
+    "value" : 120
+  },
+  "temporal_relationship_to_physical_activity" : "at rest"
+}

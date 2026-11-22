@@ -1,0 +1,16 @@
+{
+  "descriptiveStatistic" : "average",
+  "effectiveTimeFrame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  },
+  "measurementMethod" : "pulse oximetry",
+  "oxygenSaturation" : {
+    "unit" : "%",
+    "value" : 98
+  },
+  "oxygenTherapyModeOfAdministration" : "nasal cannula",
+  "supplementalOxygenFlowRate" : {
+    "unit" : "L/min",
+    "value" : 2
+  }
+}

@@ -24,7 +24,16 @@ public enum OxygenTherapyModeOfAdministration: String, Codable, Sendable {
 
 /// An Oxygen Saturation measurement
 /// Generated from Open mHealth `omh:oxygen-saturation:2.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_oxygen-saturation)
-public struct OxygenSaturation: Schema {
+public struct OxygenSaturation: Schema, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case oxygenSaturation = "oxygen_saturation"
+        case measurementMethod = "measurement_method"
+        case oxygenTherapyModeOfAdministration = "oxygen_therapy_mode_of_administration"
+        case supplementalOxygenFlowRate = "supplemental_oxygen_flow_rate"
+        case effectiveTimeFrame = "effective_time_frame"
+        case descriptiveStatistic = "descriptive_statistic"
+    }
+
     /// The Open mHealth schema identifier
     public static let schemaId = SchemaId(namespace: .omh, name: "oxygen-saturation", version: "2.0")
     
@@ -61,5 +70,18 @@ public struct OxygenSaturation: Schema {
         self.oxygenTherapyModeOfAdministration = oxygenTherapyModeOfAdministration
         self.supplementalOxygenFlowRate = supplementalOxygenFlowRate
         self.descriptiveStatistic = descriptiveStatistic
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
+        oxygenSaturation = try container.decode(OxygenSaturationUnitValue.self, forKey: .oxygenSaturation)
+        measurementMethod = try container.decodeIfPresent(OxygenSaturationMeasurementMethod.self, forKey: .measurementMethod)
+        oxygenTherapyModeOfAdministration = try container.decodeIfPresent(
+            OxygenTherapyModeOfAdministration.self,
+            forKey: .oxygenTherapyModeOfAdministration
+        )
+        supplementalOxygenFlowRate = try container.decodeIfPresent(SupplementalOxygenFlowRateUnitValue.self, forKey: .supplementalOxygenFlowRate)
+        effectiveTimeFrame = try container.decode(TimeFrame.self, forKey: .effectiveTimeFrame)
+        descriptiveStatistic = try container.decodeIfPresent(DescriptiveStatistic.self, forKey: .descriptiveStatistic)
     }
 }

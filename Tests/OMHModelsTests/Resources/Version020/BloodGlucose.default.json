@@ -1,0 +1,13 @@
+{
+  "bloodGlucose" : {
+    "unit" : "mg/dL",
+    "value" : 95
+  },
+  "descriptiveStatistic" : "average",
+  "effectiveTimeFrame" : {
+    "date_time" : "2023-11-14T22:13:20Z"
+  },
+  "specimenSource" : "capillary blood",
+  "temporalRelationshipToMeal" : "fasting",
+  "temporalRelationshipToSleep" : "on waking"
+}
