@@ -21,3 +21,10 @@ path = "Tests/OMHModelsTests/Resources/Version020/**"
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Stanford University and the project authors (see CONTRIBUTORS.md)"
 SPDX-License-Identifier = "MIT"
+
+# Test data from the Open mHealth schemas repository (https://github.com/openmhealth/schemas/tree/main/test-data/omh)
+[[annotations]]
+path = "Tests/OMHModelsTests/Resources/OpenMHealth/**"
+precedence = "override"
+SPDX-FileCopyrightText = "Open mHealth contributors"
+SPDX-License-Identifier = "Apache-2.0"

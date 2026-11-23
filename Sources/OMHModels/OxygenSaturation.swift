@@ -8,7 +8,7 @@
 import Foundation
 
 
-/// The method by which the oxygen saturation is measured. Currently, pulse oximetry is teh only method used for measuring oxygen saturation in a non-hospital setting.
+/// The method by which the oxygen saturation is measured. Currently, pulse oximetry is the only method used for measuring oxygen saturation in a non-hospital setting.
 public enum OxygenSaturationMeasurementMethod: String, Codable, Sendable {
     case pulseOximetry = "pulse oximetry"
 }
@@ -18,15 +18,17 @@ public enum OxygenSaturationMeasurementSystem: String, Codable, Sendable {
     case peripheralCapillary = "peripheral capillary"
 }
 
+/// The mode of administration of supplemental oxygen therapy
 public enum OxygenTherapyModeOfAdministration: String, Codable, Sendable {
     case nasalCannula = "nasal cannula"
 }
 
 /// An Oxygen Saturation measurement
-/// Generated from Open mHealth `omh:oxygen-saturation:2.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_oxygen-saturation)
+/// Generated from Open mHealth `omh:oxygen-saturation:3.0` (https://w3id.org/openmhealth/schemas/omh/oxygen-saturation-3.0.json)
 public struct OxygenSaturation: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {
         case oxygenSaturation = "oxygen_saturation"
+        case system
         case measurementMethod = "measurement_method"
         case oxygenTherapyModeOfAdministration = "oxygen_therapy_mode_of_administration"
         case supplementalOxygenFlowRate = "supplemental_oxygen_flow_rate"
@@ -35,10 +37,13 @@ public struct OxygenSaturation: Schema, Equatable {
     }
 
     /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "oxygen-saturation", version: "2.0")
+    public static let schemaId = SchemaId(namespace: .omh, name: "oxygen-saturation", version: "3.0")
     
     /// The oxygen saturation measurement as a `UnitValue` containing a double value and a unit
     public var oxygenSaturation: OxygenSaturationUnitValue
+    
+    /// The level in the body at which oxygen saturation is measured
+    public var system: OxygenSaturationMeasurementSystem?
     
     /// The method by which oxygen saturation is measured
     public var measurementMethod: OxygenSaturationMeasurementMethod?
@@ -59,6 +64,7 @@ public struct OxygenSaturation: Schema, Equatable {
     public init(
         oxygenSaturation: OxygenSaturationUnitValue,
         effectiveTimeFrame: TimeFrame,
+        system: OxygenSaturationMeasurementSystem? = nil,
         measurementMethod: OxygenSaturationMeasurementMethod? = nil,
         oxygenTherapyModeOfAdministration: OxygenTherapyModeOfAdministration? = nil,
         supplementalOxygenFlowRate: SupplementalOxygenFlowRateUnitValue? = nil,
@@ -66,6 +72,7 @@ public struct OxygenSaturation: Schema, Equatable {
     ) {
         self.oxygenSaturation = oxygenSaturation
         self.effectiveTimeFrame = effectiveTimeFrame
+        self.system = system
         self.measurementMethod = measurementMethod
         self.oxygenTherapyModeOfAdministration = oxygenTherapyModeOfAdministration
         self.supplementalOxygenFlowRate = supplementalOxygenFlowRate
@@ -75,6 +82,7 @@ public struct OxygenSaturation: Schema, Equatable {
     public init(from decoder: any Decoder) throws {
         let container = try KeyStrategyTolerantContainer(decoder: decoder, keyedBy: CodingKeys.self)
         oxygenSaturation = try container.decode(OxygenSaturationUnitValue.self, forKey: .oxygenSaturation)
+        system = try container.decodeIfPresent(OxygenSaturationMeasurementSystem.self, forKey: .system)
         measurementMethod = try container.decodeIfPresent(OxygenSaturationMeasurementMethod.self, forKey: .measurementMethod)
         oxygenTherapyModeOfAdministration = try container.decodeIfPresent(
             OxygenTherapyModeOfAdministration.self,

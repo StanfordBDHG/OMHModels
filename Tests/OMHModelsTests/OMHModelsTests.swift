@@ -211,7 +211,8 @@ struct OMHModelsTests {
     @Test("Body Fat Percentage")
     func testBodyFatPercentage() throws {
         let bodyFatPercentage = BodyFatPercentage(
-            bodyFatPercentage: BodyFatPercentageUnitValue(unit: .percent, value: 16)
+            bodyFatPercentage: BodyFatPercentageUnitValue(unit: .percent, value: 16),
+            effectiveTimeFrame: try timeFrame
         )
         
         #expect(bodyFatPercentage.bodyFatPercentage.value == 16)

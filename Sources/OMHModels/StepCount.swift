@@ -7,6 +7,8 @@
 
 
 /// A Step Count measurement
+///
+/// - Note: Open mHealth deprecated `step-count` in favor of the IEEE 1752 ``PhysicalActivity`` schema with a `steps` base movement quantity.
 /// Generated from Open mHealth `omh:step-count:3.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count)
 public struct StepCount: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {

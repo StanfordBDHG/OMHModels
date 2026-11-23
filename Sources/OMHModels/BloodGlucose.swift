@@ -7,7 +7,7 @@
 
 
 /// A Blood Glucose measurement
-/// Generated from Open mHealth `omh:blood-glucose:3.0` (https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_blood-glucose)
+/// Generated from Open mHealth `omh:blood-glucose:4.0` (https://w3id.org/openmhealth/schemas/omh/blood-glucose-4.0.json)
 public struct BloodGlucose: Schema, Equatable {
     private enum CodingKeys: String, CodingKey {
         case bloodGlucose = "blood_glucose"
@@ -19,7 +19,7 @@ public struct BloodGlucose: Schema, Equatable {
     }
 
     /// The Open mHealth schema identifier
-    public static let schemaId = SchemaId(namespace: .omh, name: "blood-glucose", version: "3.0")
+    public static let schemaId = SchemaId(namespace: .omh, name: "blood-glucose", version: "4.0")
     
     /// The blood glucose measurement as a `UnitValue` containing a double value and a unit
     public var bloodGlucose: BloodGlucoseUnitValue
